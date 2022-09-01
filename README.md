@@ -61,16 +61,30 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+- The currency converter system is a website that exchanges currencies. The website will be based on real time exchange rates.  
+- The system will be of practical use to tourists who travel abroad. Tipping and tax ranges vary from country to country and the system will provide a recommendation depending on chosen location. The user will also have an option of adding percentages manually for tipping calculations.
+- The system will collect user data such as transaction history and user and choose which currency they would like to track.
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* Start / Login page: 
+
+Welcome text with short descriptions of page/site purpose. (What we offer)
+(Optional) The login page will ask users to enter their UserName and UserPassword as well as the sign up option for new users. With the right UserName and UserPassword, users have access to their already existing account with saved transaction history and their saved default (base)currency rate.
+Button to direct the user to the exchange page.
+
+* Home / Exchange page: 
+
+The home page will display options for the user to convert one currency to another.
+(If logged in) The home page will display the users default currency conversion rate, in addition, the user will also be able to search for other currencies. Also users will have an option to exit from the user account and leave feedback.
+(If logged in) The home page will display the latest 5 user’s transactions.
+Function to add tax, optional to choose provided country or write percentage manually.
+Function to add tip, optional to choose provided country or write percentage manually.
+
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/er_diagram.png)
+![ER Diagram](./images/ER.png)
 
 ## Teaser (MS3)
 
