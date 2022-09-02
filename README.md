@@ -67,19 +67,19 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Pages
 
-* Start / Login page: 
+Start / Login page: 
 
-Welcome text with short descriptions of page/site purpose. (What we offer)
-(Optional) The login page will ask users to enter their UserName and UserPassword as well as the sign up option for new users. With the right UserName and UserPassword, users have access to their already existing account with saved transaction history and their saved default (base)currency rate.
-Button to direct the user to the exchange page.
+- Welcome text with short descriptions of page/site purpose. (What we offer)
+- (Optional) The login page will ask users to enter their UserName and UserPassword as well as the sign up option for new users. With the right UserName and UserPassword, users have access to their already existing account with saved transaction history and their saved default (base)currency rate.
+- Button to direct the user to the exchange page.
 
-* Home / Exchange page: 
+Home / Exchange page: 
 
-The home page will display options for the user to convert one currency to another.
-(If logged in) The home page will display the users default currency conversion rate, in addition, the user will also be able to search for other currencies. Also users will have an option to exit from the user account and leave feedback.
-(If logged in) The home page will display the latest 5 user’s transactions.
-Function to add tax, optional to choose provided country or write percentage manually.
-Function to add tip, optional to choose provided country or write percentage manually.
+- The home page will display options for the user to convert one currency to another.
+- (If logged in) The home page will display the users default currency conversion rate, in addition, the user will also be able to search for other currencies. Also users will have an option to exit from the user account and leave feedback.
+- (If logged in) The home page will display the latest 5 user’s transactions.
+- Function to add tax, optional to choose provided country or write percentage manually.
+- Function to add tip, optional to choose provided country or write percentage manually.
 
 
 ### Entity-Relationship (ER) Diagram
