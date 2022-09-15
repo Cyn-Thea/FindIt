@@ -22,9 +22,9 @@ var userSchema = new Schema({
      bucketList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Places'
+        ref: 'places'
       }
     ]
 });
 
-module.exports = mongoose.model('Users', userSchema);
+module.exports = mongoose.model('users', userSchema);
