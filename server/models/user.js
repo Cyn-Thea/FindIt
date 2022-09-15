@@ -8,21 +8,23 @@ var userSchema = new Schema({
          type: String,
          required:true
          },
-         email:  {
+   email:  {
             type: String, 
             lowercase: true, unique: true,
              required: [true, 'can\'t be blank'],
              match:  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/ ,
               index: true
-    },
+        },
     password: { 
         type: String,
         required:true
      },
-     baseCurrency: { 
-        type: String,
-        required:false
-     }
+     bucketList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Places'
+      }
+    ]
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('Users', userSchema);

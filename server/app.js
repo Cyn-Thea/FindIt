@@ -6,10 +6,10 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
 //var usersController = require('./controllers/users');
-//var exchangeRatesController = require('./controllers/exchangeRates');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://DIT342:DIT342webdev@currency-exchange.eo0r15o.mongodb.net/local_library?retryWrites=true&w=majority'; 
+var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://Cynthia:Cynthia1997@cluster0.xjysh8q.mongodb.net/Group_25?retryWrites=true&w=majority'; 
+
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
