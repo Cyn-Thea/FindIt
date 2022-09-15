@@ -6,6 +6,8 @@ var tripSchema = new Schema({
     price: { type: Number },
     routeStart: { type: String },
     routeEnd: { type: String },
+
+    places: [{ type: Schema.Types.ObjectId, ref: "places" }],
 });
 
 module.exports = mongoose.model('trips', tripSchema);

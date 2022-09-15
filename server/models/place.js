@@ -2,8 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var placeSchema = new Schema({
-    adress: { type: String },
+    
     name: { type: String },
+    street: { type: String },
+    zipcode: { type: String },
+    city: { type: String },
     placeID: { type: Number },
     score: { type: Number }
 });
