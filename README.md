@@ -61,16 +61,41 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+- Tourist calculator to help European tourists visiting the USA.
+- Converter exchange from chosen european currency to USD and adding bank fee.
+- The user will also have an option of adding percentages manually for tipping and tax calculations.
+- The system will allow the user to choose a default/base currency, so they would not need to search for it every time they login to the website
+
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+- <b>Home:</b>
+Welcome text with short descriptions of page/site purpose. (What we offer).
+
+- <b>Sign in:</b> 
+(Optional) The sign in page will ask users to enter their UserName and UserPassword as well as the sign up option for new users.
+Choose and save favorite currency.
+
+- <b>History:</b>
+Signed-in user have access to existing account with saved transaction history and default (default/favorite) currency.
+View history of latest (up to 5) transactions.
+
+- <b>Exchange:</b> 
+Convert from chosen European currency(from provided list)  to US Dollars.
+(If logged in) The home page will display the user's default currency.
+Add bank fee, suggested average bank fee or add manually. 
+
+- <b>Tax:</b>
+Function to add tax, optional to choose from the provided list of states.
+
+- <b>Tip:</b>
+Function to add tip, optional to choose provided (three) leves or write percentage manually.
+
+
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/er_diagram.png)
+![ER Diagram](./images/ER2.png)
 
 ## Teaser (MS3)
 
