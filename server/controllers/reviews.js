@@ -5,65 +5,83 @@ var Review = require('../models/review');
 
 // create new review
 router.post('/api/reviews', function(req, res, next){
-    var review = new Review (req.body);
-    Review.save(function(err, review) {
+    var review = new Review(req.body);
+    review.save(function(err, review) {
         if (err) { return next(err); }
         res.status(201).json(review);
     })
 });
 
-
-// get all comments
-router.post('/api/reviews', function (req, res, next) {
-    var reviews = new Reviews(req.body);
-    Review.save(function (err, reviews) {
+// Return a list of all reviews
+router.get('/api/reviews', function(req, res, next) {
+    Review.find(function(err, reviews) {
         if (err) { return next(err); }
-        res.status(201).json(reviews);
+        res.json({'reviews': reviews });
+    });
+ });
+
+// Return the review with the given ID
+router.get('/api/reviews/:id', function(req, res, next) {
+    var id = req.params.id;
+    Review.findById(id, function(err, review) {
+        if (err) { return next(err); }
+        if (review === null) {
+            return res.status(404).json({'message': 'Review not found!'});
+        }
+        res.json(review);
+    });
+ });
+
+ //using put function
+router.put('/api/reviews/:id',function(req,res,next) {
+    var id = req.params.id;
+    Review.findById(id, function(err, review) {
+        if (err) { return next(err); }
+        if (review === null) {
+            return res.status(404).json({'message': 'Review not found!'});
+        }
+        review.author = req.body.author;
+        review.rating = req.body.rating; 
+        review.comment = req.body.comment;
+        review.place_data = req.body.place_data;
+        review.save();
+        res.json(review);
+    });
+});
+
+
+//using patch function
+router.patch('/api/reviews/:id', function(req, res, next) {
+    var id = req.params.id;
+    Review.findByIdAndUpdate(id, req.body,{new: true}, function(err, review) {
+        if (err) {
+            return next(err); 
+        } else if (review === null) {
+            return res.status(404).json({'message': 'Review not found!'});
+        } else {
+            return res.status(200).json(review);
+        }
     })
 });
 
-//Get comments by ID
-router.get('/api/reviews/:_id',function(req,res,next){
-    var id = req.params._id;
-    Review.findById(id,function(err,reviews){
-        if(err){
-            return next(err);
+// Delete a review with the given ID
+router.delete('/api/reviews/:id', function(req, res, next) {
+    var id = req.params.id;
+    Review.findOneAndDelete({_id: id}, function(err, review) {
+        if (err) { return next(err); }
+        if (review === null) {
+            return res.status(404).json({'message': 'Review not found'});
         }
-        res.json({"reviews":reviews})
+        res.json(review);
     });
-});
-//Delete all
+ });
+
+    //Delete all
 router.delete('/api/reviews',function(req,res,next){
     Review.deleteMany({},function(err,reviews){
-        if(err){
-            return next(err);
-        }
-        if(reviews==null){
-            return res.status(404).json({"message":"Review not found"});
-        }
+        if(err){return next(err);}
+        if(reviews==null){return res.status(404).json({"message":"Reviews not found"});}
         res.json(reviews);
     });
-
 });
-//using patch function
-
-router.patch('/api/reviews/:_id',function(req,res,next){
-    var id = req.params._id;
-    Review.findById(id,function(err,reviews){
-        if(err){
-            return next(err);
-        }
-        if(reviews == null){
-            return res.status(404).json({"message":"review not found"});
-        }
-        reviews.author = (req.body.username || reviews.author);
-        reviews.rating = (req.body.rating  || comments.rating);
-        reviews.comment = (req.body.comment  || comments.comment);
-        
-    
-        reviews.save();
-        res.json(reviews);
-
-    });
-});
-
+module.exports = router;
