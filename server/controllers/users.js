@@ -33,6 +33,40 @@ router.get('/api/users/:id', function(req, res, next) {
     });
 });
 
+// Update the user with the given ID
+router.put('/api/users/:id', function(req, res, next) {
+    var id = req.params.id;
+    User.findById(id, function(err, user) {
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(404).json({'message': 'User not found!'});
+        }
+        user.username = req.body.username;
+        user.email = req.body.email;
+        user.password = req.body.password;
+        user.bucketList = req.body.bucketList;
+        user.save();
+        res.json(user);
+    });
+ });
+
+// Partially update the user with the given ID
+router.patch('/api/users/:id', function(req, res, next) {
+    var id = req.params.id;
+    User.findById(id, function(err, user) {
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(404).json({'message': 'User not found!'});
+        }
+        user.username = req.body.username || user.username;
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        user.bucketList = req.body.bucketList || user.bucketList;
+        user.save();
+        res.json(user);
+    });
+ });
+
 
 // Delete user by id
 router.delete('/api/users/:id', function(req, res, next) {
@@ -49,7 +83,7 @@ router.delete('/api/users/:id', function(req, res, next) {
 
 //Delete all
 router.delete('/api/users/', function (req, res, next) {
-    Users.remove({}, function (err, user) {
+    User.remove({}, function (err, user) {
         if (err) { return next(err); }
         if (user == null) {
             return res.status(404).json({ "message": "user not found" });
