@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Dog = require('../models/dog');
-var User = require('../models/user');
+var Owner = require('../models/user');
  
 //Creates a new dog
 router.post('/api/dogs', function(req, res, next){
