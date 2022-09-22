@@ -7,8 +7,8 @@ var placeSchema = new Schema({
     street: { type: String },
     zipcode: { type: String },
     city: { type: String },
-    placeID: { type: Number },
-    score: {type: String, }
+    //_id: { type: Number },
+    score: {type: Number}
 });
 
 module.exports = mongoose.model('places', placeSchema);
