@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Place = require('../models/place');
+var User = require('../models/user');
  
  
 //Creates a new place
@@ -19,7 +20,32 @@ router.get('/api/places', function(req, res, next) {
        res.json({'places': places });
    });
 });
- 
+
+//Get place posts filtered by name
+router.get('/api/places/filtered', function(req, res, next) {
+    if (!req.query.name){return next();}
+    Place.find({
+        name: { $regex: req.query.name, $options: 'i' }
+    },
+        function(err, places) {
+            if (err) { return next(err); }
+            if (!places) { return res.status(404).json(
+                {'message': 'no place found'});
+            }
+        res.status(200).json(places);
+    });
+});
+
+ //Get places sorted by score(low to high)
+router.get('/api/places/sort', function (req, res, next) {
+        Place.find().sort({
+        score: req.query.sortByScore
+    }).exec(function (err, places) {
+        if (err) { return next(err); }
+        if (!places) { return res.status(404).json({'message': 'no places found'}); }
+        res.status(200).json(places);
+    })
+}); 
 // Return the place with the given ID
 router.get('/api/places/:id', function(req, res, next) {
    var id = req.params.id;
@@ -31,7 +57,7 @@ router.get('/api/places/:id', function(req, res, next) {
        res.json(place);
    });
 });
- 
+
 // Update the place with the given ID
 router.put('/api/places/:id', function(req, res, next) {
    var id = req.params.id;
