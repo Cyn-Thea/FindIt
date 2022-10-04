@@ -5,14 +5,14 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
-var dogsController = require('./controllers/dogs');
-var placesController = require('./controllers/places');
+var postsController = require('./controllers/posts');
 var usersController = require('./controllers/users');
-var reviewsController = require('./controllers/reviews');
+var commentsController = require('./controllers/comments');
+var authController = require("./controllers/auth");
+var collectionsController = require("./controllers/collections")
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://Cynthia:Cynthia1997@cluster0.xjysh8q.mongodb.net/Group_25?retryWrites=true&w=majority'; 
-
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -41,10 +41,11 @@ app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project!'});
 });
 
-app.use(dogsController);
-app.use(placesController);
+app.use(postsController);
 app.use(usersController);
-app.use(reviewsController);
+app.use(commentsController);
+app.use(authController);
+app.use(collectionsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
