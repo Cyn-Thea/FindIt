@@ -55,14 +55,12 @@ export default {
       Api.post('/users', newUser).then(
         (res) => {
           console.log(res)
-          this.$bvModal.msgBoxOk('SignUp Successful', this.$router.go(0))
           this.$router.push('/')
         },
         (err) => {
           console.log(err.response)
           this.boxOne = ''
           this.error = err.response.data.error
-          this.$bvModal.msgBoxOk(this.error)
         }
       )
     }
