@@ -5,6 +5,8 @@
       <router-link to="/signUp">SignUp </router-link>
       <router-link to="/">Home  </router-link>
       <router-link to="/createPost">  Create post </router-link>
+      <router-link to="/profile">Profile </router-link>
+      <router-link to="/posts">Posts </router-link>
       <router-view v-bind:user="user" />
     </div>
     <!-- Render the content of the current page view -->
