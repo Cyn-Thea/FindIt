@@ -11,6 +11,7 @@
             placeholder="author"
           />
         </div>
+        <b-card-sub-title class="mb-2">{{ user.firstName }}</b-card-sub-title>
         <div class="form-group">
           <input
             type="comment"
@@ -28,6 +29,9 @@
 import { Api } from '@/Api'
 export default {
   name: 'addcomment',
+  props: {
+    user: Object
+  },
   data() {
     return {
       author: '',
@@ -39,9 +43,9 @@ export default {
   methods: {
     CreateReview() {
       const newPost = {
-        author: this.$route.params.id, // refrencing post not user
+        author: this.user.id, // refrence the user
         comment: this.comment,
-        post_data: this.$route.params.id
+        post_data: this.$route.params.id // reference post
       }
       Api.post('/posts/' + this.$route.params.id + '/comments', newPost).then(
         (res) => {

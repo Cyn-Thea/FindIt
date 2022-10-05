@@ -56,6 +56,9 @@
 import { Api } from '@/Api'
 export default {
   name: 'CreatePost',
+  props: {
+    user: Object
+  },
   data() {
     return {
       catergory: '',
@@ -75,7 +78,7 @@ export default {
         description: this.description,
         building: this.building,
         room: this.room,
-        author: this.$route.params.id
+        author: this.user.id // refrence the user
       }
       Api.post('/posts', newPost).then(
         (res) => {
