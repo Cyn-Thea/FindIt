@@ -4,12 +4,16 @@
           <h1>Create Post</h1>
         </div>
            <div class="form-group">
-          <input
-            type="text"
+            <label for="catergory" class="col-4 col-form-label">Catergory:</label>
+            <select
+            id="catergory"
+            type="category"
             class="form-control"
             v-model="catergory"
-            placeholder="catergory"
-          />
+            placeholder="catergory">
+              <option>lost</option>
+              <option>found</option>
+            </select>
         </div>
        <div class="form-group">
           <input
@@ -21,18 +25,26 @@
         </div>
         <div class="form-group">
           <input
-            type="room"
-            class="form-control"
-            v-model="room"
-            placeholder="room"
-          />
-        </div>
-        <div class="form-group">
-          <input
             type="description"
             class="form-control"
             v-model="description"
             placeholder="description"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="location"
+            class="form-control"
+            v-model="building"
+            placeholder="location"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="room"
+            class="form-control"
+            v-model="room"
+            placeholder="room"
           />
         </div>
         <button @click="CreatePost">Post</button>
@@ -51,6 +63,7 @@ export default {
       description: '',
       building: '',
       room: '',
+      author: '',
       error: ''
     }
   },
@@ -61,7 +74,8 @@ export default {
         title: this.title,
         description: this.description,
         building: this.building,
-        room: this.room
+        room: this.room,
+        author: this.$route.params.id
       }
       Api.post('/posts', newPost).then(
         (res) => {

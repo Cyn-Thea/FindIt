@@ -1,12 +1,18 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/login">Login </router-link>
-      <router-link to="/signUp">SignUp </router-link>
-      <router-link to="/">Home  </router-link>
-      <router-link to="/createPost">  Create post </router-link>
-      <router-link to="/profile">Profile </router-link>
-      <router-link to="/posts">Posts </router-link>
+      <b-navbar type="dark navbar" variant="dark" class="navigation">
+      <b-navbar-nav class="ml-auto">
+          <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
+          <b-nav-item class="nav-item" href="/login">Login</b-nav-item>
+          <b-nav-item class="nav-item" href="/SignUp">Sign Up</b-nav-item>
+          <b-nav-item class="nav-item" href="/">Home</b-nav-item>
+          <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
+          <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
+          <b-nav-item class="nav-item" href="/createComment">Comment</b-nav-item>
+          <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
+        </b-navbar-nav>
+    </b-navbar>
       <router-view v-bind:user="user" />
     </div>
     <!-- Render the content of the current page view -->

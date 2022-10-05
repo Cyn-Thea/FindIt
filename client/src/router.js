@@ -6,6 +6,8 @@ import CreatePost from './views/CreatePost.vue'
 import Login from './views/Login.vue'
 import Profile from './views/Profile.vue'
 import Posts from './views/Posts.vue'
+import Post from './views/Post.vue'
+import CreateComment from './views/CreateComment.vue'
 
 Vue.use(Router)
 
@@ -17,6 +19,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/createComment',
+      name: 'createComment',
+      component: CreateComment
     },
     {
       path: '/',
@@ -42,6 +49,11 @@ export default new Router({
       path: '/posts',
       name: 'posts',
       component: Posts
+    },
+    {
+      path: '/posts/:id',
+      name: 'post',
+      component: Post
     }
   ]
 })

@@ -22,7 +22,7 @@ var userSchema = new Schema({
          type: String},
     collections: [{ 
         type: Schema.Types.ObjectId,
-         ref: 'collections'}]
+         ref: 'collections'}],
   });
 
 module.exports = mongoose.model('users', userSchema)

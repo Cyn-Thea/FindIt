@@ -10,8 +10,7 @@
         <p v-if="!posts.length && isLoading === 'hideLoading'">There are no posts yet.</p>
         <b-row v-for="post in posts" v-bind:key="post._id" class="listitem">
             <b-card>
-              <b-col>catergory (to post): <a :href="'/posts/' + post._id ">{{ post.title }}</a></b-col>
-               <b-button :href="`/posts/${post._id}/comments`" size="sm" class="postbuttons btn-primary">to post</b-button>
+              <b-col>catergory: {{ post.catergory }}</b-col>
                 <b-col>Author: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
           <b-col> Description: {{ post.description }}</b-col>
@@ -19,9 +18,7 @@
           <b-col> room: {{ post.room }}</b-col>
           <b-card>
             <h2>Comments</h2>
-            <b-button :href="'/posts/' + post._id + '/comments/' " size="sm" class="cafebuttons btn-primary">view comments</b-button>
-            <!-- <router-link to="/addcomment/">view all comments </router-link>-->
-            <!--  <p v-if="!comments.length && message === ''">There are no comments yet.</p>-->
+             <a :href="'/posts/' + post._id" size="sm">view all comments</a>
           </b-card>
         </b-card>
         </b-row>

@@ -167,13 +167,6 @@ router.get('/api/posts/:id/comments', function (req, res, next) {
         if (err) { 
             return next(err); }
     }).populate('comments').exec(function (err, post) {
-       /* if (err) { 
-            if (err instanceof mongoose.CastError){
-                err.status = 400;
-                err.message = 'Invalid post ID';
-            }
-            return next(err); 
-        }*/
         if (post == null) { 
             var err = new Error('No Post found');
             err.status = 404;
