@@ -4,13 +4,35 @@ var Comment = require('../models/comment');
 var Post = require('../models/post');
 var User = require('../models/user')
 
-// create new comment (works)
+/* // create new comment (works)
 router.post('/api/comments', function(req, res, next){
     var comments = new Comment(req.body);
     comments.save(function(err, comments) {
         if (err) { return next(err); }
         res.status(201).json(comments);
     })
+});*/
+
+// create new comment (works)
+router.post('/api/posts/:post_id/comments', function(req, res, next) {
+    var post_id = req.params.post_id;
+    var comment = new Comment(req.body);
+    
+    Post.findById(post_id, function(err, post) {
+        if (post == null) {
+            return res.status(404).json({"message": "post not found"});
+        }
+        if (err) { return next(err); }
+
+        comment.post = post._id;
+        post.comments.push(comment);
+        post.save();
+    });
+
+    comment.save(function(err) {
+        if (err) { return next(err); }
+        res.status(201).json(comment);
+    });
 });
 
 // user creates a comment under a post
@@ -23,19 +45,19 @@ router.post('/api/users/:userId/posts/:postId/comments', function (req, res, nex
              return next(err) }
         if (user === null) { 
             return res.status(404).json({ message: "User not found" }); }        
-        Post.findById(postId, function(err, post){
-            if (err) { 
-                return next(err) }
-            if (post === null) {
-                 return res.status(404).json({ message: "Post not found" }); }
-            comment.post = postId;
-           comment.save(function (err, comment) {
-                if (err) { return next(err) }
-                post.comments.push(comment._id);
-                post.save();
-                console.log('comment created');
-                return res.status(201).json(comment); 
-            });
+            Post.findById(postId, function(err, post){
+                if (err) { 
+                    return next(err) }
+                if (post === null) {
+                     return res.status(404).json({ message: "Post not found" }); }
+                comment.post = postId;
+               comment.save(function (err, comment) {
+                    if (err) { return next(err) }
+                    post.comments.push(comment._id);
+                    post.save();
+                    console.log('comment created');
+                    return res.status(201).json(comment); 
+                });
         })
     })
 });
