@@ -1,4 +1,5 @@
 <template>
+<form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
           <h1>Create Post</h1>
@@ -36,19 +37,12 @@
             type="location"
             class="form-control"
             v-model="building"
-            placeholder="location"
+            placeholder="location details"
           />
         </div>
-        <div class="form-group">
-          <input
-            type="room"
-            class="form-control"
-            v-model="room"
-            placeholder="room"
-          />
-        </div>
-        <button @click="CreatePost">Post</button>
+         <button class="btn btn-primary btn-block">Post</button>
     </div>
+    </form>
   </template>
 
 <script>
@@ -71,7 +65,7 @@ export default {
     }
   },
   methods: {
-    CreatePost() {
+    handleSubmit() {
       const newPost = {
         catergory: this.catergory,
         title: this.title,

@@ -1,27 +1,21 @@
 <template>
+<form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
           <h1>Create comment</h1>
         </div>
-       <div class="form-group">
-          <input
-            type="author"
-            class="form-control"
-            v-model="author"
-            placeholder="author"
-          />
-        </div>
-        <b-card-sub-title class="mb-2">{{ user.firstName }}</b-card-sub-title>
+        <b-card-sub-title class="mb-2">{{ user.username }}</b-card-sub-title>
         <div class="form-group">
           <input
             type="comment"
             class="form-control"
             v-model="comment"
-            placeholder="comment"
+            placeholder="add a comment"
           />
         </div>
-        <button @click="CreateReview">Post</button>
+        <button class="btn btn-primary btn-block">Post</button>
     </div>
+    </form>
   </template>
 
 <script>
@@ -41,7 +35,7 @@ export default {
     }
   },
   methods: {
-    CreateReview() {
+    handleSubmit() {
       const newPost = {
         author: this.user.id, // refrence the user object
         comment: this.comment,

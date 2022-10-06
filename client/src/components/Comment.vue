@@ -2,9 +2,9 @@
   <div class="container reviewsitem">
     <div class="row" >
         <b-card>
-        <b-col>Author: {{ comment.author}}</b-col>
+        <b-col>Comment by: {{ comment.author}}</b-col>
       <div class="col-12">
-        <p> <b-col>Title: {{ comment.comment }}</b-col></p>
+        <p> <b-col> {{ comment.comment }}</b-col></p>
       </div>
       </b-card>
     </div>

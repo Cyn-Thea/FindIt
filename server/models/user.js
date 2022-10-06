@@ -22,7 +22,10 @@ var userSchema = new Schema({
          type: String},
     collections: [{ 
         type: Schema.Types.ObjectId,
-         ref: 'collections'}],
+        ref: 'collections'}],
+    posts: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'users'}]
   });
 
 module.exports = mongoose.model('users', userSchema)

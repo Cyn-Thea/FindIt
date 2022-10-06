@@ -4,17 +4,6 @@
     <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
         {{ message.comment}}
     </b-alert>
-    <div class="container">
-      <div class="row">
-        <div class="col-md">
-          <b-col>Author: {{ post.author}}</b-col>
-            <b-col>Title: {{ post.title }}</b-col>
-          <b-col> Description: {{ post.description }}</b-col>
-          <b-col> Found at: {{ post.building }}</b-col>
-          <b-col> room: {{ post.room }}</b-col>
-        </div>
-      </div>
-    </div>
     <h2>Comments</h2>
     <b-button :href="'/addcomment/' + post._id" size="sm" class="postbuttons btn-primary">Add Comment</b-button>
       <p v-if="!comments.length && message === ''">There are no comments yet.</p>

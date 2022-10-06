@@ -1,4 +1,5 @@
 <template>
+<form @submit.prevent="handleSubmit">
     <div class="profile">
     <div class="container">
         <h2>Account Settings</h2>
@@ -22,28 +23,32 @@
           </div>
           <div class="input">
             <label for="password">Password:</label>
-            <input type="text" id="password" v-model="password" />
+            <input type="password" id="password" v-model="password" />
           </div>
-          <div class="input">
-            <label for="university">Enrolled at: </label>
-            <input disabled type="text" id="university" v-model="university" />
-          </div>
-          <div class="input">
-            <label for="campus">Campus: </label>
-            <input type="text" id="campus" v-model="campus" />
-          </div>
-          <button @click="updateProfile">Save Changes</button>
+           <button class="btn btn-primary btn-block">Save Changes</button>
           <button @click="deleteAccount">Delete Account</button>
         </div>
       </div>
+       <h2>Your Posts</h2>
+       <b-row align-h="center">
+        <b-col cols="12" sm="6" md="4" v-for="post in posts" v-bind:key="post._id">
+            <post-item v-bind:project="project" v-on:delete-project="deleteProject" v-on:load-project="loadProject"/>
+        </b-col>
+      </b-row>
     </div>
+    </form>
   </template>
+
 <script>
 
 import { Api } from '@/Api'
+import PostItem from '@/components/PostItem.vue'
 
 export default {
   name: 'Profile',
+  components: {
+    PostItem
+  },
   props: {
     user: Object
   },
@@ -56,7 +61,9 @@ export default {
       password: '',
       university: '',
       campus: '',
-      id: ''
+      id: '',
+      userID: localStorage.getItem('token'),
+      posts: []
     }
   },
   // if user is not authorized return to login page
@@ -66,6 +73,7 @@ export default {
     }
   },
   mounted() {
+    this.loadAllPosts()
     Api.get('/user', { headers: { token: localStorage.getItem('token') } })
       .then(res => {
         this.username = res.data.user.username
@@ -88,28 +96,39 @@ export default {
         .then((res) => {
           localStorage.clear()
           console.log(res)
-          this.$router.push('/login', this.$router.go(0))
+          this.$router.push('/', this.$router.go(0))
         })
         .catch((error) => {
           console.log(error)
         })
     },
-    updateProfile() {
+    handleSubmit() {
       const updateUser = {
         firstName: this.firstName || this.user.firstName,
         lastName: this.lastName || this.user.lastName,
-        password: this.password || this.user.password,
-        campus: this.campus || this.user.campus
+        password: this.password || this.user.password
       }
       Api.patch(`/users/${this.user.id}`, updateUser).then(
         (res) => {
           console.log(res)
-          this.$router.push('/')
+          this.$router.push('/home')
         },
         (err) => {
           console.log(err.response)
         }
       )
+    },
+    loadAllPosts() {
+      Api.get('/users/' + localStorage.getItem('token') + '/posts')
+        .then(response => {
+          console.log(response.data)
+          this.posts = response.data.posts
+        })
+        .catch(error => {
+          this.message = error.message
+          console.log(error)
+          this.posts = []
+        })
     }
   }
 }
