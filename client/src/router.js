@@ -31,6 +31,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/addcomment/:id',
+      name: 'addcomment',
+      component: CreateComment
+    },
+    {
       path: '/profile',
       name: 'Profile',
       component: Profile

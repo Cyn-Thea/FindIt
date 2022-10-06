@@ -143,58 +143,7 @@ router.put('/api/posts/:id', function(req, res, next) {
    });
 });
 
- /*
-//Get posts of a certain cartegoryg
-router.get('/api/posts/catergory/:catergory', function(req, res, next) {
-    var Catergory = req.params.catergory;
-    Post.find({catergory: Catergory.toString(),function(err, post){
-        if(err){return next(err);}
-        if(post == null){
-            return res.status(404).json({'Message': 'post not found'});
-        }
-        res.json(post);
-     }});
-});
-
-//Get posts filtered by name /building
-router.get('/api/posts/filtered', function(req, res, next) {
-    if (!req.query.catergory){return next();}
-    Post.find({
-        catergory: { $regex: req.query.catergory, $options: 'i' }
-    },
-        function(err, posts) {
-            if (err) { return next(err); }
-            if (!posts) { return res.status(404).json(
-                {'message': 'no posts jjjjjjfound'});
-            }
-        res.status(200).json(posts);
-    });
-});
-
-//Get places sorted by date
-router.get('/api/posts/sort', function (req, res, next) {
-    Post.find().sort({
-    date: req.query.sortByDate
-}).exec(function (err, posts) {
-    if (err) { return next(err); }
-    if (!posts) { return res.status(404).json({'message': 'no posts found'}); }
-    res.status(200).json(posts);
-})
-});
-
-
- //Get places sorted by score(low to high) / try when i get date to work
-router.get('/api/posts/sort', function (req, res, next) {
-        Post.find().sort({
-        score: req.query.sortByScore
-    }).exec(function (err, posts) {
-        if (err) { return next(err); }
-        if (!posts) { return res.status(404).json({'message': 'no posts found'}); }
-        res.status(200).json(posts);
-    })
-}); */
-
-//Partially update the place with the given ID(works)
+//Partially update the post with the given ID(works)
 router.patch('/api/posts/:id', function(req, res, next) {
    var id = req.params.id;
    Post.findById(id, function(err, post) {
@@ -220,7 +169,7 @@ router.patch('/api/posts/:id', function(req, res, next) {
 });
  
 
-// Delete a place with the given ID
+// Delete a post with the given ID
 router.delete('/api/posts/:id', function(req, res, next) {
    var id = req.params.id;
    Post.findOneAndDelete({_id: id}, function(err, post) {
@@ -232,7 +181,7 @@ router.delete('/api/posts/:id', function(req, res, next) {
    });
 });
  
-//Deletes all places
+//Deletes all posts
 router.delete('/api/posts', function(req, res) {
    Post.deleteMany({}, function(err, posts) {
        if (err) {return res.status(409).json({message: 'posts not deleted!', 'error': err}); }
@@ -242,5 +191,31 @@ router.delete('/api/posts', function(req, res) {
        res.json(posts);
    });
 });
- 
+
+// filter by catergory (works)
+router.get('/api/postFiltered', function(req, res, next) {
+    if (!req.query.catergory){return next();}
+    Post.find({
+        catergory: { $regex: req.query.catergory, $options: 'i' }
+    },
+        function(err, posts) {
+            if (err) { return next(err); }
+            if (!posts) { return res.status(404).json(
+                {'message': 'no posts found'});
+            }
+        res.status(200).json(posts);
+    });
+});
+
+//Get posts sorted by post dates (old to new works)
+router.get('/api/postSort', function (req, res, next) {
+    Post.find().sort({
+        date: req.query.sortByDate
+    }).exec(function (err, results) {
+        if (err) { return next(err); }
+        if (!results) { return res.status(404).json({'message': 'no posts found'}); }
+        res.status(200).json(results);
+    })
+});
+
 module.exports = router;
