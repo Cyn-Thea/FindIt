@@ -43,7 +43,7 @@ export default {
   methods: {
     CreateReview() {
       const newPost = {
-        author: this.user.id, // refrence the user
+        author: this.user.id, // refrence the user object
         comment: this.comment,
         post_data: this.$route.params.id // reference post
       }
