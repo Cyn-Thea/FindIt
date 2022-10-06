@@ -1,15 +1,31 @@
 <template>
+<form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
           <h1>Sign Up</h1>
         </div>
-
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            v-model="firstName"
+            placeholder="Enter your first name"
+          />
+        </div>
         <div class="form-group">
           <input
             type="text"
             class="form-control"
+            v-model="lastName"
+            placeholder="Enter your last name"
+          />
+        </div>
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
             v-model="username"
-            placeholder="Username"
+            placeholder="Enter your username"
           />
         </div>
        <div class="form-group">
@@ -17,7 +33,7 @@
             type="email"
             class="form-control"
             v-model="email"
-            placeholder="Email"
+            placeholder="Enter your email"
           />
         </div>
         <div class="form-group">
@@ -25,11 +41,12 @@
             type="password"
             class="form-control"
             v-model="password"
-            placeholder="Password"
+            placeholder="Enter your password"
           />
         </div>
-        <button @click="signUp">SignUp</button>
+         <button class="btn btn-primary btn-block">Submit</button>
     </div>
+     </form>
   </template>
 
 <script>
@@ -42,20 +59,24 @@ export default {
       username: '',
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
       error: ''
     }
   },
   methods: {
-    signUp() {
+    handleSubmit() {
       const newUser = {
         username: this.username,
         email: this.email,
-        password: this.password
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName
       }
       Api.post('/users', newUser).then(
         (res) => {
           console.log(res)
-          this.$router.push('/')
+          this.$router.push('/home')
         },
         (err) => {
           console.log(err.response)

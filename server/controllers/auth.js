@@ -86,6 +86,7 @@ router.post('/api/users/login', (req, res, next) => {
             university: user.university,
             email: user.email,
             username: user.username,
+            posts: user.posts,
             id: user.id
           }
         })

@@ -1,6 +1,16 @@
 <template>
     <div>
-      <h1>all Posts</h1>
+      <h1>Explore</h1>
+       <b-button
+          class="btn-style btn-lost"
+          title="Filter by lost"
+          v-on:click=";(selectedCategory = 'lost'), sortByCatergory()"
+          >Lost</b-button >
+         <b-button
+          class="btn-style btn-found"
+          title="Filter by found"
+          v-on:click=";(selectedCategory = 'found'), sortByCatergory()"
+          >Found</b-button>
       <b-container class="list">
         <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
           {{ message }}
@@ -10,12 +20,11 @@
         <p v-if="!posts.length && isLoading === 'hideLoading'">There are no posts yet.</p>
         <b-row v-for="post in posts" v-bind:key="post._id" class="listitem">
             <b-card>
-              <b-col>catergory: {{ post.catergory }}</b-col>
-                <b-col>Author: {{ post.author}}</b-col>
+            <b-col>{{ post.catergory }}</b-col>
+            <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
-          <b-col> Description: {{ post.description }}</b-col>
-          <b-col> Found at: {{ post.building }}</b-col>
-          <b-col> room: {{ post.room }}</b-col>
+            <b-col> Description: {{ post.description }}</b-col>
+            <b-col> Found at: {{ post.building }}</b-col>
           <b-card>
             <h2>Comments</h2>
              <a :href="'/posts/' + post._id" size="sm">view all comments</a>
@@ -31,9 +40,11 @@ import { Api } from '@/Api'
 
 export default {
   name: 'posts',
+  props: {
+    user: Object
+  },
 
   mounted() {
-    console.log('All posts page is loaded')
     Api.get('/posts')
       .then(response => {
         this.isLoading = 'hideLoading'
@@ -48,16 +59,30 @@ export default {
         } else {
           this.message = 'Could not load the Posts, please try again later'
         }
-        this.posts = []
         this.showDismissibleAlert = true
       })
   },
   data() {
     return {
       posts: [],
+      sortedPosts: [],
       message: '',
+      selectedCategory: '',
       showDismissibleAlert: false,
-      isLoading: ''
+      isLoading: '',
+      error: ''
+    }
+  },
+  methods: {
+    sortByCatergory() {
+      Api.get('/postFiltered?catergory=' + this.selectedCategory)
+        .then((response) => {
+          this.sortedPosts = response.data.sortedPosts
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

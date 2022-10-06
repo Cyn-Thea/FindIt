@@ -136,6 +136,7 @@ router.put('/api/users/:id', function(req, res, next) {
         user.university = req.body.university;
         user.campus = req.body.campus;
         user.collections = req.body.collections;
+        user.posts = req.body.posts;
         user.save();
         res.json(user);
     });
@@ -157,6 +158,7 @@ router.patch('/api/users/:id', function(req, res, next) {
         user.university = req.body.university || user.university;
         user.campus = req.body.campus || user.campus;
         user.collections = req.body.collections || user.collections;
+        user.posts = req.body.posts || user.posts;
         user.save();
         res.json(user);
     });

@@ -22,8 +22,21 @@ router.get('/api/posts', function(req, res, next) {
    });
 });
 
- /*
-//Get a list of all posts of a user
+//READ get all projects for a user
+router.get('/api/users/:user_id/posts', function(req, res, next) {
+    var user_id = req.params.user_id;
+    User.findById(user_id).populate('posts').exec(function(err, user){
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(404).json({'message': 'User not found'});
+        }
+        var posts = user.posts;
+        return res.json({'posts': posts });
+    });
+});
+
+ 
+/* //Get a list of all posts of a user
 router.get('/api/user/:id/posts', function(req, res, next) {
     if (req.query.user) {
         var id = req.query.user;
@@ -89,8 +102,8 @@ router.get('api/users/:id/posts', function(req, res, next){
     } catch (error){
         return res.status(500).json({'message': 'Error fetching all posts for the user'});
     }
-});
-*/
+}); */
+
 
 /*// get all posts under a  user
 router.get('/api/users/:id/posts', function (req, res, next) {

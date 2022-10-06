@@ -4,16 +4,15 @@
       <b-navbar type="dark navbar" variant="dark" class="navigation">
       <b-navbar-nav class="ml-auto">
           <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
-          <b-nav-item class="nav-item" href="/login">Login</b-nav-item>
+          <b-nav-item class="nav-item" href="/">Login</b-nav-item>
           <b-nav-item class="nav-item" href="/SignUp">Sign Up</b-nav-item>
-          <b-nav-item class="nav-item" href="/">Home</b-nav-item>
+          <b-nav-item class="nav-item" href="/home">Home</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
-          <b-nav-item class="nav-item" href="/createComment">Comment</b-nav-item>
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
         </b-navbar-nav>
     </b-navbar>
-      <router-view v-bind:user="user" />
+      <router-view v-bind:user="user"/>
     </div>
     <!-- Render the content of the current page view -->
   </div>
@@ -27,13 +26,14 @@ export default {
   data() {
     return {
       isLoggedIn: false,
-      user: {}
+      user: {},
+      post: {}
     }
   },
   mounted() {
     if (localStorage.getItem('token') === null) {
       this.isLoggedIn = false
-      this.$router.push('/')
+      this.$router.push('/home')
     } else {
       this.isLoggedIn = true
       this.getUser()
@@ -47,7 +47,7 @@ export default {
       this.isLoggedIn = false
       this.user = {}
       localStorage.clear()
-      this.$router.push('/login')
+      this.$router.push('/')
     },
     getUser() {
       Api.get('/user', {
