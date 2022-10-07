@@ -1,14 +1,11 @@
 <template>
-<b-form @submit.prevent="handleSubmit">
+<form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
           <h1>Sign Up</h1>
         </div>
-        <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
-        {{ message}}
-    </b-alert>
          <div class="form-group">
-          <b-input
+          <input
             type="text"
             class="form-control"
             v-model="firstName"
@@ -16,7 +13,7 @@
           />
         </div>
         <div class="form-group">
-          <b-input
+          <input
             type="text"
             class="form-control"
             v-model="lastName"
@@ -24,7 +21,7 @@
           />
         </div>
          <div class="form-group">
-          <b-input
+          <input
             type="text"
             class="form-control"
             v-model="username"
@@ -32,7 +29,7 @@
           />
         </div>
        <div class="form-group">
-          <b-input
+          <input
             type="email"
             class="form-control"
             v-model="email"
@@ -40,16 +37,16 @@
           />
         </div>
         <div class="form-group">
-          <b-input
+          <input
             type="password"
             class="form-control"
             v-model="password"
             placeholder="Enter your password"
           />
         </div>
-         <b-button class="btn btn-primary btn-block">Submit</b-button>
+         <button class="btn btn-primary btn-block">Submit</button>
     </div>
-     </b-form>
+     </form>
   </template>
 
 <script>
@@ -64,8 +61,6 @@ export default {
       password: '',
       firstName: '',
       lastName: '',
-      message: '',
-      showDismissibleAlert: false,
       error: ''
     }
   },
@@ -85,9 +80,9 @@ export default {
         },
         (err) => {
           console.log(err.response)
+          this.boxOne = ''
           this.error = err.response.data.error
-          this.message = 'sign up failed, try again'
-          this.showDismissibleAlert = true
+          this.$bvModal.msgBoxOk('Invalid Credentials')
         }
       )
     }
