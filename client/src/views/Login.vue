@@ -3,6 +3,9 @@
       <div class="head">
       <h1>Log In</h1>
       </div>
+      <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+        {{ message}}
+    </b-alert>
       <div class="form-group">
         <input
           type="email"
@@ -38,7 +41,9 @@ export default {
     return {
       email: '',
       password: '',
-      error: ''
+      error: '',
+      message: '',
+      showDismissibleAlert: false
     }
   },
   methods: {
@@ -58,6 +63,8 @@ export default {
         (err) => {
           console.log(err.response)
           this.error = err.response.data.error
+          this.message = 'Invalid login credentials'
+          this.showDismissibleAlert = true
         }
       )
     }
