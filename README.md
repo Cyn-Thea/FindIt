@@ -95,7 +95,7 @@ Function to add tip, optional to choose provided (three) leves or write percenta
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/ER2.png)
+![ER Diagram](./images/Lost&Found ERD-2.png)
 
 ## Teaser (MS3)
 
