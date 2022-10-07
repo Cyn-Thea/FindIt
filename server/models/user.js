@@ -5,7 +5,8 @@ var Collection = require('./collection')
 
 var userSchema = new Schema({
     username: { 
-        type: String},
+        type: String,
+        unique: true},
     firstName: {
          type: String },
     lastName: { 
@@ -14,11 +15,6 @@ var userSchema = new Schema({
         lowercase: true, unique: true, 
         match:  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/ , index: true},
     password: {
-         type: String},
-    university:  { 
-        type: String
-        },
-    campus: {
          type: String},
     collections: [{ 
         type: Schema.Types.ObjectId,

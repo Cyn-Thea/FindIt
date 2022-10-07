@@ -1,8 +1,13 @@
 <template>
+<div class="container-md">
 <form @submit.prevent="handleSubmit">
     <div class="profile">
-    <div class="container">
         <h2>Account Settings</h2>
+         <b-container>
+      <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+          {{ message }}
+      </b-alert>
+    </b-container>
         <div class="profile-info">
           <router-view v-bind:user="user" />
           <div class="input">
@@ -35,8 +40,8 @@
             <post-item v-bind:project="project" v-on:delete-project="deleteProject" v-on:load-project="loadProject"/>
         </b-col>
       </b-row>
-    </div>
     </form>
+     </div>
   </template>
 
 <script>
@@ -63,7 +68,10 @@ export default {
       campus: '',
       id: '',
       userID: localStorage.getItem('token'),
-      posts: []
+      posts: [],
+      message: '',
+      showDismissibleAlert: false
+
     }
   },
   // if user is not authorized return to login page
@@ -111,10 +119,13 @@ export default {
       Api.patch(`/users/${this.user.id}`, updateUser).then(
         (res) => {
           console.log(res)
-          this.$router.push('/home')
+          this.message = 'Your Profile has been updated!'
+          this.showDismissibleAlert = true
         },
         (err) => {
           console.log(err.response)
+          this.message = 'Profile could not be updated, please try again later'
+          this.showDismissibleAlert = true
         }
       )
     },

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-    catergory: {
+    category: {
         type: String},
     title: { 
         type: String },
@@ -12,10 +12,6 @@ var postSchema = new Schema({
              type: Schema.Types.ObjectId,
               ref: "users" },
     building: {
-        type: String },
-    room: {
-        type: String },
-    additionalInformation: { 
         type: String },
     comments: [{ 
         type: Schema.Types.ObjectId, 

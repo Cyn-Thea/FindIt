@@ -1,10 +1,14 @@
 <template>
-    <form @submit.prevent="handleSubmit">
+<div class="container-sm">
+    <b-form @submit.prevent="handleSubmit">
       <div class="head">
       <h1>Log In</h1>
       </div>
+      <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+        {{ message}}
+    </b-alert>
       <div class="form-group">
-        <input
+        <b-input
           type="email"
           class="form-control"
           v-model="email"
@@ -12,7 +16,7 @@
         />
       </div>
 <div class="form-group">
-        <input
+        <b-input
           type="password"
           class="form-control"
           v-model="password"
@@ -26,7 +30,8 @@
           <router-link to="/signUp">Sign Up</router-link>
         </b-form-text>
         </b-form-group>
-    </form>
+    </b-form>
+    </div>
   </template>
 
 <script>
@@ -38,7 +43,9 @@ export default {
     return {
       email: '',
       password: '',
-      error: ''
+      error: '',
+      message: '',
+      showDismissibleAlert: false
     }
   },
   methods: {
@@ -58,6 +65,8 @@ export default {
         (err) => {
           console.log(err.response)
           this.error = err.response.data.error
+          this.message = 'Invalid login credentials'
+          this.showDismissibleAlert = true
         }
       )
     }

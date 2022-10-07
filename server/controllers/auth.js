@@ -5,28 +5,8 @@ const User = require("../models/user")
 var newSavedPost = require('../models/post');
 const jwt = require('jsonwebtoken');
 
-//SignUp
-router.post("/api/users/signUp", async (req, res, next) => {
-    var newUser = new User({
-     // username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
-    })
-    try {
-      var savedUser = await newUser.save();
-      res.status(200).json({
-        savedUser,
-        title: 'Signup Success' })
-    } 
-    catch (err) {
-      return res.status(400).json({
-        title: 'error',
-        error: 'email in use'
-      })
-    }
-    });
-  
-    //Login
+
+// Login
 router.post('/api/users/login', (req, res, next) => {
         var Email = req.body.email;
         var Password = req.body.password;
@@ -38,14 +18,14 @@ router.post('/api/users/login', (req, res, next) => {
         if (!user) {
           return res.status(401).json({
             title: 'user not found',
-            error: 'invalid credentials'
+            error: 'incorrect email'
           })
         }
         //not working 
         if (!bcrypt.compare(Password, user.password)) {
           return res.status(401).json({
             tite: 'login failed',
-            error: 'invalid credentials password'
+            error: 'incorrect password'
           })
         }
         try {
@@ -58,13 +38,11 @@ router.post('/api/users/login', (req, res, next) => {
         catch (err) {
           return res.status(400).json({
             title: 'error',
-            error: 'Unable To Login'
+            error: 'Login failed'
           })
         }
         })
       });
-
-      
 
     //grabbing user info
     router.get('/api/user', (req, res, next) => {
@@ -82,8 +60,6 @@ router.post('/api/users/login', (req, res, next) => {
             firstName: user.firstName,
             lastName: user.lastName,
             password: user.password,
-            campus: user.campus,
-            university: user.university,
             email: user.email,
             username: user.username,
             posts: user.posts,

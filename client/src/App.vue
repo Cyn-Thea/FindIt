@@ -1,11 +1,10 @@
 <template>
-  <div id="app">
+<div id="app">
     <div id="nav">
       <b-navbar type="dark navbar" variant="dark" class="navigation">
       <b-navbar-nav class="ml-auto">
           <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
           <b-nav-item class="nav-item" href="/">Login</b-nav-item>
-          <b-nav-item class="nav-item" href="/SignUp">Sign Up</b-nav-item>
           <b-nav-item class="nav-item" href="/home">Home</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
