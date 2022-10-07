@@ -74,11 +74,11 @@ export default {
   methods: {
     handleSubmit() {
       const newUser = {
+        firstName: this.firstName,
+        lastName: this.lastName,
         username: this.username,
         email: this.email,
-        password: this.password,
-        firstName: this.firstName,
-        lastName: this.lastName
+        password: this.password
       }
       Api.post('/users', newUser).then(
         (res) => {
