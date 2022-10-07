@@ -13,10 +13,6 @@ var postSchema = new Schema({
               ref: "users" },
     building: {
         type: String },
-    room: {
-        type: String },
-    additionalInformation: { 
-        type: String },
     comments: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'comments' }],

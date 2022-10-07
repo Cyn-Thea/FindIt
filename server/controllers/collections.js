@@ -39,13 +39,6 @@ router.post('/api/users/:userID/collections', function (req, res, next) {
     var userID = req.params.userID;
     var collection = new Collection(req.body);
     User.findById(userID, function (err, user) {
-        if (err) {
-            if (err instanceof mongoose.CastError) {
-                err.status = 400;
-                err.message = 'Invalid user ID';
-            }
-            return next(err);
-        }
         if (user == null) {
             var err = new Error('No User found');
             err.status = 404;
@@ -71,17 +64,6 @@ router.post('/api/users/:userID/collections', function (req, res, next) {
 router.get("/api/users/:userID/collections", function (req, res, next) {
     var userID = req.params.userID;
     User.findById(userID, function (err, user) {
-        if (err) {
-            return next(err);
-        }
-    }).populate('collections').exec(function (err, user) {
-        if (err) {
-            if (err instanceof mongoose.CastError) {
-                err.status = 400;
-                err.message = 'Invalid user ID';
-            }
-            return next(err);
-        }
         if (user == null) {
             var err = new Error('No User found');
             err.status = 404;
@@ -103,13 +85,6 @@ router.get("/api/users/:userID/collections/:collectionID", function (req, res, n
     var collectionID = req.params.collectionID;
     User.findOne({ _id: userID }, { "collections": collectionID })
         .populate("collections").exec(function (err, user) {
-            if (err) {
-                if (err instanceof mongoose.CastError) {
-                    err.status = 400;
-                    err.message = 'Invalid user ID or collection ID';
-                }
-                return next(err);
-            }
             if (user == null) {
                 var err = new Error('No User found');
                 err.status = 404;
@@ -164,7 +139,7 @@ router.delete('/api/collections/:id', function(req, res, next) {
 });
 
 
-// Delete collection by id
+/*// Delete collection by id
 router.delete('/api/users/:userID/collections/:collectionID', function(req, res, next) {
     var id = req.params.id;
     Collection.findOneAndDelete({_id: id}, function(err, collection) {
@@ -174,6 +149,6 @@ router.delete('/api/users/:userID/collections/:collectionID', function(req, res,
         }
         res.json(collection);
     });
-});
+});*/
 
 module.exports = router;

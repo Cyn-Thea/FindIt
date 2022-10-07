@@ -15,11 +15,6 @@ var userSchema = new Schema({
         match:  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/ , index: true},
     password: {
          type: String},
-    university:  { 
-        type: String
-        },
-    campus: {
-         type: String},
     collections: [{ 
         type: Schema.Types.ObjectId,
         ref: 'collections'}],
