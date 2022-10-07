@@ -33,11 +33,11 @@ router.get('/api/posts/:id', function(req, res, next) {
        res.json(post);
    });
 });
-// filter posts by catergory (works)
+// filter posts by category (works)
 router.get('/api/postFiltered', function(req, res, next) {
-    if (!req.query.catergory){return next();}
+    if (!req.query.category){return next();}
     Post.find({
-        catergory: { $regex: req.query.catergory, $options: 'i' }
+        category: { $regex: req.query.category, $options: 'i' }
     },
         function(err, posts) {
             if (err) { return next(err); }
@@ -67,7 +67,7 @@ router.put('/api/posts/:id', function(req, res, next) {
        if (post === null) {
            return res.status(404).json({'message': 'post not found!'});
        }
-       post.catergory = req.body.catergory
+       post.category = req.body.category
        post.title = req.body.title;
        post.description = req.body.description;
        post.author = req.body.author;
@@ -92,7 +92,7 @@ router.patch('/api/posts/:id', function(req, res, next) {
        if (post === null) {
            return res.status(404).json({'message': 'post not found!'});
        }
-       post.catergory = (req.body.catergory || post.catergory);
+       post.category = (req.body.category || post.category);
        post.title = (req.body.title || post.title);
        post.description = (req.body.description || post.description);
        post.author = (req.body.author || post.author);

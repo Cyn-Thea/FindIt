@@ -23,7 +23,7 @@
         v-bind:key="post._id"
         class="listitem"
         align-h="center">
-            <b-col>{{ post.catergory }}</b-col>
+            <b-col>{{ post.category }}</b-col>
             <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
             <b-col> Description: {{ post.description }}</b-col>
@@ -63,7 +63,7 @@ export default {
         })
     },
     sortByCategory() {
-      Api.get('/postFiltered?catergory=' + this.selectedCategory)
+      Api.get('/postFiltered?category=' + this.selectedCategory)
         .then((response) => {
           this.posts = response.data.posts
           console.log(response)

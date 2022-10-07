@@ -5,13 +5,13 @@
           <h1>Create Post</h1>
         </div>
            <div class="form-group">
-            <label for="catergory" class="col-4 col-form-label">Catergory:</label>
+            <label for="category" class="col-4 col-form-label">Category:</label>
             <select
-            id="catergory"
+            id="category"
             type="category"
             class="form-control"
-            v-model="catergory"
-            placeholder="catergory">
+            v-model="category"
+            placeholder="category">
               <option>lost</option>
               <option>found</option>
             </select>
@@ -55,7 +55,7 @@ export default {
   },
   data() {
     return {
-      catergory: '',
+      category: '',
       title: '',
       description: '',
       building: '',
@@ -67,7 +67,7 @@ export default {
   methods: {
     handleSubmit() {
       const newPost = {
-        catergory: this.catergory,
+        category: this.category,
         title: this.title,
         description: this.description,
         building: this.building,

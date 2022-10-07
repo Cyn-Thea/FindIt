@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-    catergory: {
+    category: {
         type: String},
     title: { 
         type: String },
