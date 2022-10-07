@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+<div id="app">
     <div id="nav">
       <b-navbar type="dark navbar" variant="dark" class="navigation">
       <b-navbar-nav class="ml-auto">

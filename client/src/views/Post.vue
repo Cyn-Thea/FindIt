@@ -1,10 +1,10 @@
 <template>
   <div id="Postpage">
+     <h2>Comments</h2>
     <h1>{{ post.title }}</h1>
     <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
         {{ message.comment}}
     </b-alert>
-    <h2>Comments</h2>
     <b-button :href="'/addcomment/' + post._id" size="sm" class="postbuttons btn-primary">Add Comment</b-button>
       <p v-if="!comments.length && message === ''">There are no comments yet.</p>
      <div v-for="comment in comments" v-bind:key="comment._id" id="commentscontainer">

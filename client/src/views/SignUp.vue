@@ -1,5 +1,4 @@
 <template>
-<div class="container-md">
 <b-form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
@@ -51,7 +50,6 @@
          <b-button class="btn btn-primary btn-block">Submit</b-button>
     </div>
      </b-form>
-      </div>
   </template>
 
 <script>
@@ -74,11 +72,11 @@ export default {
   methods: {
     handleSubmit() {
       const newUser = {
-        firstName: this.firstName,
-        lastName: this.lastName,
         username: this.username,
         email: this.email,
-        password: this.password
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName
       }
       Api.post('/users', newUser).then(
         (res) => {

@@ -1,5 +1,5 @@
 <template>
-<div class="container-md">
+<div class="container-sm">
     <b-form @submit.prevent="handleSubmit">
       <div class="head">
       <h1>Log In</h1>

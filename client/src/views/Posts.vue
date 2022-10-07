@@ -1,12 +1,15 @@
 <template>
     <div>
+      <div class="container-md">
       <h1>Explore</h1>
        <b-button
+          variant="outline-info"
           class="btn-style btn-lost"
           title="Filter by lost"
           v-on:click=";(selectedCategory = 'lost'), sortByCatergory()"
           >Lost</b-button >
          <b-button
+          variant="outline-success"
           class="btn-style btn-found"
           title="Filter by found"
           v-on:click=";(selectedCategory = 'found'), sortByCatergory()"
@@ -18,7 +21,7 @@
         <b-row id="loading" v-bind:class="isLoading">
         </b-row>
         <p v-if="!posts.length && isLoading === 'hideLoading'">There are no posts yet.</p>
-        <b-row v-for="post in posts" v-bind:key="post._id" class="listitem">
+        <b-row v-for="post in posts" v-bind:key="post._id" class="listitem" align-h="center">
             <b-card>
             <b-col>{{ post.catergory }}</b-col>
             <b-col>Post by: {{ post.author}}</b-col>
@@ -26,13 +29,13 @@
             <b-col> Description: {{ post.description }}</b-col>
             <b-col> Found at: {{ post.building }}</b-col>
           <b-card>
-            <h2>Comments</h2>
              <a :href="'/posts/' + post._id" size="sm">view all comments</a>
           </b-card>
         </b-card>
         </b-row>
       </b-container>
     </div>
+     </div>
 </template>
 
 <script>
