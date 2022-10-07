@@ -1,7 +1,7 @@
 <template>
 <form @submit.prevent="handleSubmit">
     <div class="profile">
-    <div class="container">
+    <div class="container-md">
         <h2>Account Settings</h2>
         <div class="profile-info">
           <router-view v-bind:user="user" />

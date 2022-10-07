@@ -5,7 +5,8 @@ var Collection = require('./collection')
 
 var userSchema = new Schema({
     username: { 
-        type: String},
+        type: String,
+        unique: true},
     firstName: {
          type: String },
     lastName: { 
