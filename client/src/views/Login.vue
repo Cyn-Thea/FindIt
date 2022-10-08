@@ -90,7 +90,7 @@ export default {
   padding: 20px;
   text-align: center;
   background: #5fb1ca;
-  color: rgb(172, 64, 125);
+  color: rgb(246, 245, 246);
   font-size: 50px;
   font-family: Trebuchet MS;
 }
