@@ -77,7 +77,7 @@ export default {
   // if user is not authorized return to login page
   created() {
     if (localStorage.getItem('token') === null) {
-      this.$router.push('/login')
+      this.$router.push('/')
     }
   },
   mounted() {
@@ -97,7 +97,7 @@ export default {
   methods: {
     logout() {
       localStorage.clear()
-      this.$router.push('/login')
+      this.$router.push('/')
     },
     deleteAccount() {
       Api.delete(`/users/${this.user.id}`)

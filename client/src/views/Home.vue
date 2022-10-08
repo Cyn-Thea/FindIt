@@ -35,6 +35,6 @@ export default {
 
 <style>
 .btn_message {
-  margin-bottom: 1em;
+  margin-bottom: 3em;
 }
 </style>
