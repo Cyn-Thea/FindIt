@@ -16,7 +16,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'Login',
       component: Login
     },
@@ -26,7 +26,7 @@ export default new Router({
       component: CreateComment
     },
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       component: Home
     },

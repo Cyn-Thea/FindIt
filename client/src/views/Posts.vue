@@ -86,7 +86,7 @@ export default {
   margin-bottom: 1em;
   background-color: rgb(219, 237, 239);
   color: #000000;
-  border: 3px solid #087d94;
+  border: 2px solid #087d94;
   border-radius: 10px;
   padding: 2px 6px;
   text-align: center;

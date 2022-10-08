@@ -1,5 +1,5 @@
 <template>
-<form @submit.prevent="handleSubmit">
+<b-form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
           <h1>Create comment</h1>
@@ -15,7 +15,7 @@
         </div>
         <button class="btn btn-primary btn-block">Post</button>
     </div>
-    </form>
+    </b-form>
   </template>
 
 <script>

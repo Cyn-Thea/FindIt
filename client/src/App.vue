@@ -3,9 +3,13 @@
     <div id="nav">
       <b-navbar type="dark" variant="info" class="navigation" >
       <b-navbar-nav class="ml-auto">
+         <b-nav-item-dropdown text="Settings" right>
+           <b-dropdown-item href="/profile">Proile</b-dropdown-item>
+        <b-dropdown-item  @click="logout">Logout</b-dropdown-item>
+         </b-nav-item-dropdown>
           <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
-          <b-nav-item class="nav-item" href="/">Login</b-nav-item>
-          <b-nav-item class="nav-item" href="/home">Home</b-nav-item>
+          <b-nav-item class="nav-item" href="/login">Login</b-nav-item>
+          <b-nav-item class="nav-item" href="/">Home</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
@@ -32,7 +36,7 @@ export default {
   mounted() {
     if (localStorage.getItem('token') === null) {
       this.isLoggedIn = false
-      this.$router.push('/home')
+      this.$router.push('/')
     } else {
       this.isLoggedIn = true
       this.getUser()
@@ -46,7 +50,7 @@ export default {
       this.isLoggedIn = false
       this.user = {}
       localStorage.clear()
-      this.$router.push('/')
+      this.$router.push('/login')
     },
     getUser() {
       Api.get('/user', {
@@ -81,11 +85,8 @@ export default {
   color: #01080e;
 }
 a:hover, a:active {
-  background-color: #19708d;
+  background-color: #7fb4c6;
   color: white;
 }
-.navigation {
-  padding: 0;
-  font-size: 20px;
-}
+
 </style>

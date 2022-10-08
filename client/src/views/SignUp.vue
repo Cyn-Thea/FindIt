@@ -76,7 +76,7 @@ export default {
       Api.post('/users', newUser).then(
         (res) => {
           console.log(res)
-          this.$router.push('/home')
+          this.$router.push('/')
         },
         (err) => {
           console.log(err.response)
