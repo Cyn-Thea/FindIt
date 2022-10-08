@@ -3,9 +3,6 @@
     <div id="nav">
       <b-navbar type="dark" variant="info" class="navigation" >
       <b-navbar-nav class="ml-auto">
-          <!-- <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item> -->
-          <!-- <b-nav-item class="nav-item" href="/">Login</b-nav-item> -->
-          <!-- <b-nav-item class="nav-item" href="/">Home</b-nav-item> -->
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item-dropdown text="Settings" right>
@@ -13,7 +10,6 @@
            <b-dropdown-item  @click="logout">Logout</b-dropdown-item>
            <b-dropdown-item @click="$bvModal.show('bv-modal')">Deactivate Account</b-dropdown-item>
          </b-nav-item-dropdown>
-          <!-- <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item> -->
       </b-navbar-nav>
           <b-modal id="bv-modal" hide-footer>
        <template #modal-title>Delete Account</template>
