@@ -50,7 +50,7 @@ export default {
       Api.post('/posts/' + this.$route.params.id + '/comments', newPost).then(
         (res) => {
           console.log(res)
-          this.$router.push('/posts')
+          this.$router.push('/posts/' + this.$route.params.id)
         },
         (err) => {
           console.log(err.response)
