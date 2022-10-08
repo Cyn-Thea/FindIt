@@ -1,5 +1,6 @@
 <template>
-<form @submit.prevent="handleSubmit">
+<div class="container-sm">
+<b-form @submit.prevent="handleSubmit">
     <div>
         <div class="head">
           <h1>Sign Up</h1>
@@ -44,9 +45,16 @@
             placeholder="Enter your password"
           />
         </div>
-         <button class="btn btn-primary btn-block">Submit</button>
+         <button class="btn btn-primary">Create Account</button>
+          <b-form-group>
+        <b-form-text class="text-left"
+          >Already have an account?
+          <router-link to="/login">Login</router-link>
+        </b-form-text>
+        </b-form-group>
     </div>
-     </form>
+     </b-form>
+     </div>
   </template>
 
 <script>
