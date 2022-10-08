@@ -11,7 +11,7 @@
         <div class="profile-info">
           <router-view v-bind:user="user" />
           <div class="input">
-            <label for="username">User Name:</label>
+            <label for="username">Username:</label>
             <input disabled type="text" id="username" v-model="username" />
           </div>
           <div class="input">
@@ -30,7 +30,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" />
           </div>
-           <button class="btn btn-primary btn-block">Save Changes</button>
+           <button class="btn btn-primary">Save Changes</button>
           <button @click="deleteAccount">Delete Account</button>
         </div>
       </div>
