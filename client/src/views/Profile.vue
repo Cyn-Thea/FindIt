@@ -1,14 +1,14 @@
 <template>
-<div class="container-md">
+<div class="container-sm">
 <form @submit.prevent="handleSubmit">
-    <div class="profile">
-        <h2>Account Settings</h2>
+      <div class="header">
+        <h1>Account Settings</h1>
+      </div>
          <b-container>
       <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
           {{ message }}
       </b-alert>
     </b-container>
-        <div class="profile-info">
           <router-view v-bind:user="user" />
           <div class="input">
             <label for="username">Username:</label>
@@ -30,10 +30,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" />
           </div>
-           <button class="btn btn-primary btn-block">Save Changes</button>
-          <button @click="deleteAccount">Delete Account</button>
-        </div>
-      </div>
+           <button class="btn btn-primary ">Save Changes</button>
        <h2>Your Posts</h2>
        <b-row align-h="center">
         <b-col cols="12" sm="6" md="4" v-for="post in posts" v-bind:key="post._id">
@@ -92,17 +89,6 @@ export default {
       localStorage.clear()
       this.$router.push('/')
     },
-    deleteAccount() {
-      Api.delete(`/users/${this.user.id}`)
-        .then((res) => {
-          localStorage.clear()
-          console.log(res)
-          this.$router.push('/', this.$router.go(0))
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
     handleSubmit() {
       const updateUser = {
         firstName: this.firstName || this.user.firstName,
@@ -137,3 +123,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .input {
+    margin-top: 0em;
+    margin-bottom: 1em;
+  }
+</style>
