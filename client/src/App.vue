@@ -6,6 +6,7 @@
          <b-nav-item-dropdown text="Settings" right>
            <b-dropdown-item href="/profile">Proile</b-dropdown-item>
         <b-dropdown-item  @click="logout">Logout</b-dropdown-item>
+         <b-dropdown-item @click="$bvModal.show('bv-modal')">Deactivate Account</b-dropdown-item>
          </b-nav-item-dropdown>
           <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
           <b-nav-item class="nav-item" href="/login">Login</b-nav-item>
@@ -13,9 +14,17 @@
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
-        </b-navbar-nav>
+      </b-navbar-nav>
+          <b-modal id="bv-modal" hide-footer>
+       <template #modal-title>Delete Account</template>
+       <div class="d-block text-center">
+         <h3>Are you sure you want to permanetly delete your account?</h3>
+        </div>
+       <b-button type="button" class="btn btn-danger mb-9 ml-3" @click="deleteAccount">YES</b-button>
+       <b-button type="button" class="btn btn-success mb-9 ml-3" @click="$bvModal.hide('bv-modal')">NO</b-button>
+       </b-modal>
     </b-navbar>
-      <router-view v-bind:user="user"/>
+    <router-view v-bind:user="user"/>
     </div>
     <!-- Render the content of the current page view -->
   </div>
@@ -71,6 +80,17 @@ export default {
         this.comment = res.data.comments
         console.log(res.data.comments)
       })
+    },
+    deleteAccount() {
+      Api.delete(`/users/${this.user.id}`)
+        .then((res) => {
+          localStorage.clear()
+          console.log(res)
+          this.$router.push('/login', this.$router.go(0))
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
