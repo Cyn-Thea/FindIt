@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <div id="nav">
-      <b-navbar type="dark navbar" variant="dark" class="navigation">
+      <b-navbar type="dark" variant="info" class="navigation" >
       <b-navbar-nav class="ml-auto">
           <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
           <b-nav-item class="nav-item" href="/">Login</b-nav-item>
@@ -78,6 +78,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #01080e;
+}
+a:hover, a:active {
+  background-color: #19708d;
+  color: white;
+}
+.navigation {
+  padding: 0;
+  font-size: 20px;
 }
 </style>
