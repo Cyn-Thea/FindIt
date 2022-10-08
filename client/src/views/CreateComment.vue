@@ -1,9 +1,14 @@
 <template>
+<div class="container-sm">
 <b-form @submit.prevent="handleSubmit">
     <div>
-        <div class="head">
+        <div class="header">
           <h1>Create comment</h1>
         </div>
+        <b-avatar
+        size="3.5em"
+        variant="secondary">
+        </b-avatar>
         <b-card-sub-title class="mb-2">{{ user.username }}</b-card-sub-title>
         <div class="form-group">
           <input
@@ -13,9 +18,10 @@
             placeholder="add a comment"
           />
         </div>
-        <button class="btn btn-primary btn-block">Post</button>
+        <button class="btn btn-primary">Post</button>
     </div>
     </b-form>
+     </div>
   </template>
 
 <script>
