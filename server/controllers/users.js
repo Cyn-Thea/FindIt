@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Post = require('../models/post');
-var PostController = require('../controllers/posts');
-
 
 // create new user(works)
 router.post('/api/users', function(req, res, next){
@@ -13,6 +11,26 @@ router.post('/api/users', function(req, res, next){
         res.status(201).json(user);
     })
 });
+
+/* // create new comment ()
+router.post('/api/users/:id/posts', function(req, res, next) {
+    var id = req.params.id;
+    var post = new Post(req.body);
+    
+    User.findById(id, function(err, user) {
+        if (user == null) {
+            return res.status(404).json({"message": "user not found"});
+        }
+        if (err) { return next(err); }
+
+        post.user = user._id;
+        user.posts.push(post);
+    });
+     post.save(function(err) {
+        if (err) { return next(err); }
+        res.status(201).json(post);
+    });
+}); */
 
 
 // get all users (works)

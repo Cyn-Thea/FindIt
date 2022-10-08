@@ -1,17 +1,26 @@
 <template>
 <div id="app">
     <div id="nav">
-      <b-navbar type="dark navbar" variant="dark" class="navigation">
+      <b-navbar type="dark" variant="info" class="navigation" >
       <b-navbar-nav class="ml-auto">
-          <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
-          <b-nav-item class="nav-item" href="/">Login</b-nav-item>
-          <b-nav-item class="nav-item" href="/home">Home</b-nav-item>
-          <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
-          <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
-        </b-navbar-nav>
+          <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
+          <b-nav-item-dropdown text="Settings" right>
+           <b-dropdown-item href="/profile">Profile</b-dropdown-item>
+           <b-dropdown-item  @click="logout">Logout</b-dropdown-item>
+           <b-dropdown-item @click="$bvModal.show('bv-modal')">Deactivate Account</b-dropdown-item>
+         </b-nav-item-dropdown>
+      </b-navbar-nav>
+          <b-modal id="bv-modal" hide-footer>
+       <template #modal-title>Delete Account</template>
+       <div class="d-block text-center">
+         <h3>Are you sure you want to permanetly delete your account?</h3>
+        </div>
+       <b-button type="button" class="btn btn-danger mb-9 ml-3" @click="deleteAccount">Delete</b-button>
+       <b-button type="button" class="btn btn-secondary mb-9 ml-3" @click="$bvModal.hide('bv-modal')">Cancel</b-button>
+       </b-modal>
     </b-navbar>
-      <router-view v-bind:user="user"/>
+    <router-view v-bind:user="user"/>
     </div>
     <!-- Render the content of the current page view -->
   </div>
@@ -32,7 +41,7 @@ export default {
   mounted() {
     if (localStorage.getItem('token') === null) {
       this.isLoggedIn = false
-      this.$router.push('/home')
+      this.$router.push('/')
     } else {
       this.isLoggedIn = true
       this.getUser()
@@ -67,6 +76,17 @@ export default {
         this.comment = res.data.comments
         console.log(res.data.comments)
       })
+    },
+    deleteAccount() {
+      Api.delete(`/users/${this.user.id}`)
+        .then((res) => {
+          localStorage.clear()
+          console.log(res)
+          this.$router.push('/', this.$router.go(0))
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
@@ -78,6 +98,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #01080e;
 }
+a:hover, a:active {
+  background-color: #7fb4c6;
+  color: white;
+}
+
 </style>

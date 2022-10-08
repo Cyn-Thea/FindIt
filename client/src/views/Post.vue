@@ -1,11 +1,13 @@
 <template>
   <div id="Postpage">
-     <h2>Comments</h2>
-    <h1>{{ post.title }}</h1>
+     <b-container class="comment">
+     <h1>Comments</h1>
+    <h2> Title: {{ post.title }}</h2>
+    <b-button :href="'/addcomment/' + post._id" size="sm"  variant="outline-info" class="commentButton">Add Comment</b-button>
+     </b-container>
     <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
         {{ message.comment}}
     </b-alert>
-    <b-button :href="'/addcomment/' + post._id" size="sm" class="postbuttons btn-primary">Add Comment</b-button>
       <p v-if="!comments.length && message === ''">There are no comments yet.</p>
      <div v-for="comment in comments" v-bind:key="comment._id" id="commentscontainer">
       <commentItem :comment="comment" v-on:delete-comment="deleteComment"></commentItem>
@@ -81,3 +83,18 @@ export default {
   }
 }
 </script>
+
+<style>
+.comment {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: rgb(255, 255, 255);
+  color: #032c47;
+  border: 0.5px solid #0f6a7c;
+  border-radius: 50px;
+  padding: 6px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+</style>

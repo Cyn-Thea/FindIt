@@ -1,40 +1,98 @@
 <template>
-  <div>
-    <b-jumbotron header="DIT342 Frontend" lead="Welcome to your DIT342 Frontend Vue.js App">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
-  </div>
-</template>
+<div class="container-sm">
+    <b-form @submit.prevent="handleSubmit">
+      <div class="header">
+        <h1>Login</h1>
+      </div>
+      <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+        {{ message}}
+    </b-alert>
+      <div class="form-group">
+        <b-input
+          type="email"
+          class="form-control"
+          v-model="email"
+          placeholder="Email"
+        />
+      </div>
+<div class="form-group">
+        <b-input
+          type="password"
+          class="form-control"
+          v-model="password"
+          placeholder="Password"
+        />
+      </div>
+      <div id="buttons">
+      <button class="btn btn-primary">Login</button>
+      </div>
+      <b-form-group>
+        <b-form-text class="text-left"
+          >Dont have an acccount?
+          <router-link to="/signUp">Sign Up</router-link>
+        </b-form-text>
+        </b-form-group>
+    </b-form>
+    </div>
+  </template>
 
 <script>
-// @ is an alias to /src
 import { Api } from '@/Api'
 
 export default {
   name: 'home',
   data() {
     return {
-      message: 'none'
+      email: '',
+      password: '',
+      error: '',
+      message: '',
+      showDismissibleAlert: false
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
+    handleSubmit() {
+      const user = {
+        email: this.email,
+        password: this.password
+      }
+      Api.post('/users/login', user).then(
+        (res) => {
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.token)
+            this.$router.push('/posts')
+          }
+        },
+        (err) => {
+          console.log(err.response)
+          this.error = err.response.data.error
+          this.message = 'Invalid login credentials'
+          this.showDismissibleAlert = true
+          this.$router.push('/')
+        }
+      )
     }
   }
 }
 </script>
 
 <style>
-.btn_message {
-  margin-bottom: 1em;
+.container-sm {
+  margin-top: 2em;
+}
+.btn-primary{
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#buttons{
+  color: skyblue;
+}
+.header {
+  margin-bottom: 0.5em;
+  padding: 20px;
+  text-align: center;
+  background: #5fb1ca;
+  color: rgb(246, 245, 246);
+  font-size: 50px;
+  font-family: Trebuchet MS;
 }
 </style>

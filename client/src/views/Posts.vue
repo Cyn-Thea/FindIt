@@ -2,36 +2,34 @@
       <div class="container-md">
        <b-button
           variant="outline-warning"
-          class="btn-style btn-lost"
-          title="Filter by lost"
+          class="btn-style mb-4 ml-3"
+          title="All posts"
           v-on:click="retrieveAllPosts()"
           >Explore</b-button >
           <b-button
           variant="outline-info"
-          class="btn-style btn-lost"
+          class="btn-style mb-4 ml-3"
           title="Filter by lost"
           v-on:click=";(selectedCategory = 'lost'), sortByCategory()"
           >Lost</b-button >
          <b-button
           variant="outline-success"
-          class="btn-style btn-found"
+          class="btn-style mb-4 ml-3"
           title="Filter by found"
           v-on:click=";(selectedCategory = 'found'), sortByCategory()"
           >Found</b-button>
-      <b-container class="list">
-        <b-card v-for="post in posts"
+      <b-container class="listitem"
+         v-for="post in posts"
         v-bind:key="post._id"
-        class="listitem"
         align-h="center">
             <b-col>{{ post.category }}</b-col>
             <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
             <b-col> Description: {{ post.description }}</b-col>
             <b-col> Found at: {{ post.building }}</b-col>
-          <b-card>
-             <a :href="'/posts/' + post._id" size="sm">view all comments</a>
+          <b-card class="comment-listitem" >
+             <a :href="'/posts/' + post._id">view all comments</a>
           </b-card>
-        </b-card>
       </b-container>
     </div>
 </template>
@@ -41,6 +39,7 @@ import { Api } from '@/Api'
 
 export default {
   name: 'posts',
+  props: ['post'],
   mounted() {
     this.retrieveAllPosts()
   },
@@ -49,6 +48,12 @@ export default {
       posts: [],
       selectedCategory: '',
       error: ''
+    }
+  },
+  computed: {
+    isAuthor() {
+      const username = JSON.parse(localStorage.getItem('currentUser'))
+      return this.post.author === username
     }
   },
   methods: {
@@ -75,3 +80,26 @@ export default {
   }
 }
 </script>
+
+<style>
+.listitem {
+  margin-bottom: 1em;
+  background-color: rgb(219, 237, 239);
+  color: #000000;
+  border: 2px solid #087d94;
+  border-radius: 10px;
+  padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.container-md {
+  margin-top: 1em;
+}
+.btn-style {
+  font-family: "Century Gothic",Verdana,sans-serif;
+  width: 85px;
+  height: 50px;
+}
+
+</style>

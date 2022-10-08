@@ -1,17 +1,18 @@
 <template>
-<form @submit.prevent="handleSubmit">
+<div class="container-sm">
+<b-form @submit.prevent="handleSubmit">
     <div>
-        <div class="head">
+        <div class="header">
           <h1>Create Post</h1>
         </div>
            <div class="form-group">
-            <label for="category" class="col-4 col-form-label">Category:</label>
             <select
             id="category"
             type="category"
             class="form-control"
             v-model="category"
             placeholder="category">
+             <option disabled value="">Select post type</option>
               <option>lost</option>
               <option>found</option>
             </select>
@@ -42,7 +43,8 @@
         </div>
          <button class="btn btn-primary btn-block">Post</button>
     </div>
-    </form>
+    </b-form>
+     </div>
   </template>
 
 <script>

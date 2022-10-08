@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './views/Login.vue'
 import Home from './views/Home.vue'
 import SignUp from './views/SignUp.vue'
 import CreatePost from './views/CreatePost.vue'
@@ -16,17 +15,12 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'Login',
-      component: Login
-    },
-    {
       path: '/createComment',
       name: 'createComment',
       component: CreateComment
     },
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       component: Home
     },

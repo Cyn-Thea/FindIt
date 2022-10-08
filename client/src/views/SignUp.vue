@@ -1,9 +1,13 @@
 <template>
-<form @submit.prevent="handleSubmit">
+<div class="container-sm">
+<b-form @submit.prevent="handleSubmit">
     <div>
-        <div class="head">
+        <div class="header">
           <h1>Sign Up</h1>
         </div>
+         <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+        {{ message}}
+         </b-alert>
          <div class="form-group">
           <input
             type="text"
@@ -44,9 +48,16 @@
             placeholder="Enter your password"
           />
         </div>
-         <button class="btn btn-primary btn-block">Submit</button>
+         <button class="btn btn-primary">Create Account</button>
+          <b-form-group>
+        <b-form-text class="text-left"
+          >Already have an account?
+          <router-link to="/">Login</router-link>
+        </b-form-text>
+        </b-form-group>
     </div>
-     </form>
+     </b-form>
+     </div>
   </template>
 
 <script>
@@ -61,7 +72,9 @@ export default {
       password: '',
       firstName: '',
       lastName: '',
-      error: ''
+      error: '',
+      message: '',
+      showDismissibleAlert: false
     }
   },
   methods: {
@@ -76,13 +89,12 @@ export default {
       Api.post('/users', newUser).then(
         (res) => {
           console.log(res)
-          this.$router.push('/home')
+          this.$router.push('/')
         },
         (err) => {
-          console.log(err.response)
-          this.boxOne = ''
           this.error = err.response.data.error
-          this.$bvModal.msgBoxOk('Invalid Credentials')
+          this.message = 'Invalid credentials'
+          this.showDismissibleAlert = true
         }
       )
     }

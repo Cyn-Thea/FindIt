@@ -1,9 +1,14 @@
 <template>
-<form @submit.prevent="handleSubmit">
+<div class="container-sm">
+<b-form @submit.prevent="handleSubmit">
     <div>
-        <div class="head">
+        <div class="header">
           <h1>Create comment</h1>
         </div>
+        <b-avatar
+        size="3.5em"
+        variant="secondary">
+        </b-avatar>
         <b-card-sub-title class="mb-2">{{ user.username }}</b-card-sub-title>
         <div class="form-group">
           <input
@@ -13,9 +18,10 @@
             placeholder="add a comment"
           />
         </div>
-        <button class="btn btn-primary btn-block">Post</button>
+        <button class="btn btn-primary">Post</button>
     </div>
-    </form>
+    </b-form>
+     </div>
   </template>
 
 <script>
@@ -44,7 +50,7 @@ export default {
       Api.post('/posts/' + this.$route.params.id + '/comments', newPost).then(
         (res) => {
           console.log(res)
-          this.$router.push('/posts')
+          this.$router.push('/posts/' + this.$route.params.id)
         },
         (err) => {
           console.log(err.response)

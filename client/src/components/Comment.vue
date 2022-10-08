@@ -1,12 +1,12 @@
 <template>
   <div class="container reviewsitem">
     <div class="row" >
-        <b-card>
+       <b-container class="listitem">
         <b-col>Comment by: {{ comment.author}}</b-col>
       <div class="col-12">
         <p> <b-col> {{ comment.comment }}</b-col></p>
       </div>
-      </b-card>
+      </b-container>
     </div>
   </div>
 </template>
