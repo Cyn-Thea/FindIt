@@ -16,8 +16,8 @@
        <div class="d-block text-center">
          <h3>Are you sure you want to permanetly delete your account?</h3>
         </div>
-       <b-button type="button" class="btn btn-danger mb-9 ml-3" @click="deleteAccount">YES</b-button>
-       <b-button type="button" class="btn btn-success mb-9 ml-3" @click="$bvModal.hide('bv-modal')">NO</b-button>
+       <b-button type="button" class="btn btn-danger mb-9 ml-3" @click="deleteAccount">Delete</b-button>
+       <b-button type="button" class="btn btn-secondary mb-9 ml-3" @click="$bvModal.hide('bv-modal')">Cancel</b-button>
        </b-modal>
     </b-navbar>
     <router-view v-bind:user="user"/>
