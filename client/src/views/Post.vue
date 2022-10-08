@@ -1,7 +1,9 @@
 <template>
   <div id="Postpage">
+     <b-container class="comment">
      <h1>Comments</h1>
-    <h2>{{ post.title }}</h2>
+    <h2> Title: {{ post.title }}</h2>
+     </b-container>
     <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
         {{ message.comment}}
     </b-alert>
@@ -83,4 +85,16 @@ export default {
 </script>
 
 <style>
+.comment {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: rgb(255, 255, 255);
+  color: #032c47;
+  border: 0.5px solid #0f6a7c;
+  border-radius: 50px;
+  padding: 6px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
 </style>
