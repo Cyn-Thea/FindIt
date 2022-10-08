@@ -9,8 +9,8 @@
          <b-dropdown-item @click="$bvModal.show('bv-modal')">Deactivate Account</b-dropdown-item>
          </b-nav-item-dropdown>
           <b-nav-item class="nav-item" href="/profile">Profile</b-nav-item>
-          <b-nav-item class="nav-item" href="/login">Login</b-nav-item>
-          <b-nav-item class="nav-item" href="/">Home</b-nav-item>
+          <!-- <b-nav-item class="nav-item" href="/">Login</b-nav-item> -->
+          <!-- <b-nav-item class="nav-item" href="/">Home</b-nav-item> -->
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
           <b-nav-item class="nav-item" @click="logout">Logout</b-nav-item>
@@ -59,7 +59,7 @@ export default {
       this.isLoggedIn = false
       this.user = {}
       localStorage.clear()
-      this.$router.push('/login')
+      this.$router.push('/l')
     },
     getUser() {
       Api.get('/user', {
@@ -86,7 +86,7 @@ export default {
         .then((res) => {
           localStorage.clear()
           console.log(res)
-          this.$router.push('/login', this.$router.go(0))
+          this.$router.push('/', this.$router.go(0))
         })
         .catch((error) => {
           console.log(error)

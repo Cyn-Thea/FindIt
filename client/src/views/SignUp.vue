@@ -52,7 +52,7 @@
           <b-form-group>
         <b-form-text class="text-left"
           >Already have an account?
-          <router-link to="/login">Login</router-link>
+          <router-link to="/">Login</router-link>
         </b-form-text>
         </b-form-group>
     </div>
