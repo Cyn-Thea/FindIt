@@ -30,7 +30,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" v-model="password" />
           </div>
-           <button class="btn btn-primary">Save Changes</button>
+           <button class="btn btn-primary btn-block">Save Changes</button>
           <button @click="deleteAccount">Delete Account</button>
         </div>
       </div>
@@ -71,13 +71,6 @@ export default {
       posts: [],
       message: '',
       showDismissibleAlert: false
-
-    }
-  },
-  // if user is not authorized return to login page
-  created() {
-    if (localStorage.getItem('token') === null) {
-      this.$router.push('/')
     }
   },
   mounted() {

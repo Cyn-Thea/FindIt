@@ -40,7 +40,7 @@
 import { Api } from '@/Api'
 
 export default {
-  name: 'Login',
+  name: 'home',
   data() {
     return {
       email: '',
@@ -68,6 +68,7 @@ export default {
           this.error = err.response.data.error
           this.message = 'Invalid login credentials'
           this.showDismissibleAlert = true
+          this.$router.push('/')
         }
       )
     }
