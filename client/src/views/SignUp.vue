@@ -2,9 +2,12 @@
 <div class="container-sm">
 <b-form @submit.prevent="handleSubmit">
     <div>
-        <div class="head">
+        <div class="header">
           <h1>Sign Up</h1>
         </div>
+         <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+        {{ message}}
+         </b-alert>
          <div class="form-group">
           <input
             type="text"
@@ -69,7 +72,9 @@ export default {
       password: '',
       firstName: '',
       lastName: '',
-      error: ''
+      error: '',
+      message: '',
+      showDismissibleAlert: false
     }
   },
   methods: {
@@ -87,10 +92,9 @@ export default {
           this.$router.push('/')
         },
         (err) => {
-          console.log(err.response)
-          this.boxOne = ''
           this.error = err.response.data.error
-          this.$bvModal.msgBoxOk('Invalid Credentials')
+          this.message = 'Invalid credentials'
+          this.showDismissibleAlert = true
         }
       )
     }
