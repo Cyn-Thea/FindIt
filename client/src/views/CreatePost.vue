@@ -76,7 +76,7 @@ export default {
         room: this.room,
         author: this.user.id // refrence the user
       }
-      Api.post('/posts', newPost).then(
+      Api.post('/users/' + this.user.id + '/posts', newPost).then(
         (res) => {
           console.log(res)
           this.$router.push('/posts')

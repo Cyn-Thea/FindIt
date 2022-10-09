@@ -41,6 +41,7 @@ export default {
   name: 'posts',
   props: ['post'],
   mounted() {
+    console.log('PAGE is loaded')
     this.retrieveAllPosts()
   },
   data() {

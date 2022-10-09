@@ -7,6 +7,7 @@ import Profile from './views/Profile.vue'
 import Posts from './views/Posts.vue'
 import Post from './views/Post.vue'
 import CreateComment from './views/CreateComment.vue'
+import Activity from './views/Activity.vue'
 
 Vue.use(Router)
 
@@ -53,6 +54,12 @@ export default new Router({
       path: '/posts/:id',
       name: 'post',
       component: Post
+    },
+    {
+      path: '/activity/:id',
+      name: 'activity',
+      component: Activity
     }
+
   ]
 })
