@@ -1,5 +1,5 @@
 <template>
-  <div class="container reviewsitem">
+  <div class="container">
     <div class="row" >
        <b-container class="listitem">
         <b-col>Comment by: {{ comment.author}}</b-col>
@@ -17,3 +17,7 @@ export default {
   props: ['comment']
 }
 </script>
+
+<style >
+
+</style>

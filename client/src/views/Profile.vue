@@ -129,4 +129,10 @@ export default {
     margin-top: 0em;
     margin-bottom: 1em;
   }
+  label {
+    color: #000000;
+    display: block;
+    width: 100px;
+    float: center;
+ }
 </style>

@@ -104,5 +104,15 @@ a:hover, a:active {
   background-color: #7fb4c6;
   color: white;
 }
-
+html body {
+  background-color: #bfe7f0;
+}
+@media only screen and (min-device-width: 360px) and (max-device-height: 768px) and (-webkit-device-pixel-ratio: 3) {
+  .navigation {
+    position: sticky-bottom;
+  }
+  .ml-auto {
+    margin-right: 0;
+  }
+}
 </style>
