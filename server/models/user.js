@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcryptjs = require('bcryptjs');
-var Collection = require('./collection')
 
 var userSchema = new Schema({
     username: { 
@@ -21,7 +20,7 @@ var userSchema = new Schema({
         ref: 'collections'}],
     posts: [{ 
         type: Schema.Types.ObjectId,
-        ref: 'users'}]
+        ref: 'posts'}]
   });
 
 module.exports = mongoose.model('users', userSchema)

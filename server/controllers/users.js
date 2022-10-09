@@ -12,7 +12,7 @@ router.post('/api/users', function(req, res, next){
     })
 });
 
-/* // create new comment ()
+ // create new post ()
 router.post('/api/users/:id/posts', function(req, res, next) {
     var id = req.params.id;
     var post = new Post(req.body);
@@ -25,12 +25,13 @@ router.post('/api/users/:id/posts', function(req, res, next) {
 
         post.user = user._id;
         user.posts.push(post);
+        user.save();
     });
      post.save(function(err) {
         if (err) { return next(err); }
         res.status(201).json(post);
     });
-}); */
+});
 
 
 // get all users (works)
@@ -53,16 +54,25 @@ router.get('/api/users/:id', function(req, res, next) {
     });
 });
 
-// get all prosts made by a specific user
-router.get('/api/users/:id/posts', function(req, res, next) {
+ // get all posts of a user(works)
+ router.get('/api/users/:id/posts', function (req, res, next) {
     var id = req.params.id;
-    User.findById(id).populate('posts').exec(function(err, user){
-        if (err) { return next(err); }
-        if (user === null) {
-            return res.status(404).json({'message': 'User not found'});
+   User.findById(id, function (err, user) {
+        if (err) { 
+            return next(err); }
+    }).populate('posts').exec(function (err, user) {
+        if (user == null) { 
+            var err = new Error('No user found');
+            err.status = 404;
+            return next(err); 
+        } 
+        if (user.posts.length == 0) {
+            var err = new Error('No posts found');
+            err.status = 404;
+            return next(err);
         }
-        var posts = user.posts;
-        return res.json({'posts': posts });
+        console.log('posts with specified post retreived');
+        res.status(200).json(user);
     });
 });
 
