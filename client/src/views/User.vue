@@ -1,26 +1,26 @@
 <template>
   <div id="Postpage">
      <b-container class="comment">
-     <h1>posts</h1>
-    <h2> Title: {{ user.username }}</h2>
+     <h1>User</h1>
+    <h2> Username: {{ user.username }}</h2>
      </b-container>
     <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
         {{ message.post}}
     </b-alert>
       <p v-if="!posts.length && message === ''">There are no posts yet.</p>
      <div v-for="post in posts" v-bind:key="post._id" id="commentscontainer">
-      <postItem :post="post" v-on:delete-post="deletepost"></postItem>
+      <userItem :post="post" v-on:delete-post="deletepost"></userItem>
     </div>
   </div>
 </template>
 
 <script>
 import { Api } from '@/Api'
-import postItem from '@/components/UserPost.vue'
+import userItem from '@/components/UserPost.vue'
 
 export default {
   name: 'user',
-  components: { postItem },
+  components: { userItem },
   mounted() {
     console.log('PAGE is loaded')
     Api.get('/users/' + this.$route.params.id)
