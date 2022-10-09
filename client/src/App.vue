@@ -4,6 +4,7 @@
       <b-navbar type="dark" variant="info" class="navigation" >
       <b-navbar-nav class="ml-auto">
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
+          <b-nav-item class="nav-item" href="/users">Users</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item-dropdown text="Settings" right>
            <b-dropdown-item href="/profile">Profile</b-dropdown-item>
