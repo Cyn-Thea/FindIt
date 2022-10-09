@@ -34,7 +34,6 @@
        <h2>Your Posts</h2>
        <b-row align-h="center">
         <b-col cols="12" sm="6" md="4" v-for="post in posts" v-bind:key="post._id">
-            <post-item v-bind:project="project" v-on:delete-project="deleteProject" v-on:load-project="loadProject"/>
         </b-col>
       </b-row>
     </form>
@@ -44,13 +43,9 @@
 <script>
 
 import { Api } from '@/Api'
-import PostItem from '@/components/PostItem.vue'
 
 export default {
   name: 'Profile',
-  components: {
-    PostItem
-  },
   props: {
     user: Object
   },
@@ -61,10 +56,6 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      university: '',
-      campus: '',
-      id: '',
-      userID: localStorage.getItem('token'),
       posts: [],
       message: '',
       showDismissibleAlert: false
@@ -72,6 +63,7 @@ export default {
   },
   mounted() {
     this.loadAllPosts()
+    console.log('page' + localStorage.UserID)
     Api.get('/user', { headers: { token: localStorage.getItem('token') } })
       .then(res => {
         this.username = res.data.user.username
@@ -79,8 +71,6 @@ export default {
         this.lastName = res.data.user.lastName
         this.email = res.data.user.email
         this.password = res.data.user.password
-        this.campus = res.data.user.campus
-        this.university = res.data.user.university
         this.id = res.data.user.id
       })
   },
@@ -109,15 +99,15 @@ export default {
       )
     },
     loadAllPosts() {
-      Api.get('/users/' + localStorage.getItem('token') + '/posts')
+      Api.get(`/users/${this.user.id}/posts`)
         .then(response => {
           console.log(response.data)
           this.posts = response.data.posts
+          this.posts = []
         })
         .catch(error => {
           this.message = error.message
           console.log(error)
-          this.posts = []
         })
     }
   }
