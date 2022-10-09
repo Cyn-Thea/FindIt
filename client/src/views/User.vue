@@ -9,7 +9,7 @@
     </b-alert>
       <p v-if="!posts.length && message === ''">There are no posts yet.</p>
      <div v-for="post in posts" v-bind:key="post._id" id="commentscontainer">
-      <userItem :post="post" v-on:delete-post="deletepost"></userItem>
+      <userItem v-bind:post="post" v-on:delete-post="deletepost"></userItem>
     </div>
   </div>
 </template>

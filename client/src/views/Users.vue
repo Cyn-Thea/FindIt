@@ -1,11 +1,10 @@
 <template>
       <div class="container-md">
        <b-button
-          variant="outline-warning"
-          class="btn-style mb-4 ml-3"
+          id="delete"
           title="All posts"
           v-on:click="retrieveAllUsers()"
-          >Explore</b-button >
+          >Delete All Users</b-button >
       <b-container class="listitem"
          v-for="user in users"
         v-bind:key="user._id"
@@ -46,6 +45,29 @@ export default {
           console.log(error)
         })
     }
+    /* deleteAllUsers() {
+      Api.delete('/users')
+        .then((response) => {
+          this.users = response.data.users
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } */
   }
 }
 </script>
+
+<style>
+#delete {
+  background-color: #e80d0d; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+</style>
