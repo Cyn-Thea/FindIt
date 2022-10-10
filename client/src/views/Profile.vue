@@ -31,12 +31,17 @@
             <input type="password" id="password" v-model="password" />
           </div>
            <button class="btn btn-primary ">Save Changes</button>
-       <h2>Your Posts</h2>
-       <b-row align-h="center">
-        <b-col cols="12" sm="6" md="4" v-for="post in posts" v-bind:key="post._id">
-        </b-col>
-      </b-row>
     </form>
+    <h2>Your Posts</h2>
+    <b-row align-h="center">
+       <b-container class="listitem"
+        v-for="user in users"
+         v-bind:key="user._id">
+         </b-container>
+        <b-card class="comment-listitem" align-h="center" >
+             <a :href="'/users/' + user.id">Manage your posts</a>
+          </b-card>
+      </b-row>
      </div>
   </template>
 
@@ -56,14 +61,12 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      posts: [],
+      users: [],
       message: '',
       showDismissibleAlert: false
     }
   },
   mounted() {
-    this.loadAllPosts()
-    console.log('page' + localStorage.UserID)
     Api.get('/user', { headers: { token: localStorage.getItem('token') } })
       .then(res => {
         this.username = res.data.user.username
@@ -97,18 +100,6 @@ export default {
           this.showDismissibleAlert = true
         }
       )
-    },
-    loadAllPosts() {
-      Api.get(`/users/${this.user.id}/posts`)
-        .then(response => {
-          console.log(response.data)
-          this.posts = response.data.posts
-          this.posts = []
-        })
-        .catch(error => {
-          this.message = error.message
-          console.log(error)
-        })
     }
   }
 }
