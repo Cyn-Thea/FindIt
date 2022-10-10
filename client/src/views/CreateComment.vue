@@ -6,12 +6,11 @@
           <h1>Create comment</h1>
         </div>
         <b-avatar
-        size="3.5em"
+        size="3em"
         variant="secondary">
         </b-avatar>
-        <b-card-sub-title class="mb-2">{{ user.username }}</b-card-sub-title>
         <div class="form-group">
-          <input
+          <b-textarea
             type="comment"
             class="form-control"
             v-model="comment"

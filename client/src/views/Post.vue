@@ -1,10 +1,10 @@
 <template>
   <div id="Postpage">
-     <b-container class="comment">
-     <h1>Comments</h1>
-    <h2> Title: {{ post.title }}</h2>
-    <b-button :href="'/addcomment/' + post._id" size="sm"  variant="outline-info" class="commentButton">Add Comment</b-button>
-     </b-container>
+      <div id="header">
+          <h1>Comments</h1>
+          <h2> Title: {{ post.title }}</h2>
+        </div>
+         <b-button :href="'/addcomment/' + post._id" size="sm"  variant="outline-info" id="commentButton">Add Comment</b-button>
     <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
         {{ message.comment}}
     </b-alert>
@@ -96,5 +96,29 @@ export default {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+#header {
+  margin-bottom: 0.5em;
+  margin-top: 0.8em;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 10px;
+  text-align: center;
+  background: #5fb1ca;
+  color: rgb(246, 245, 246);
+  font-size: 50px;
+  font-family: Trebuchet MS;
+}
+#commentButton{
+  background-color: #ca1aca;
+  margin-bottom: 0.5em;
+  margin-top: -0.8em;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 </style>
