@@ -1,12 +1,8 @@
 <template>
   <div id="Postpage">
-     <b-container class="comment">
-     <h1>User</h1>
-    <h2> Username: {{ user.username }}</h2>
-     </b-container>
-    <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
-        {{ message.post}}
-    </b-alert>
+      <div id="header">
+           <h2 id = "username-lbl"> Hey {{ user.username }}</h2>
+        </div>
       <p v-if="!posts.length && message === ''">There are no posts yet.</p>
      <div v-for="post in posts" v-bind:key="post._id" id="commentscontainer">
       <userItem v-bind:post="post" v-on:delete-post="deletepost"></userItem>
@@ -46,11 +42,11 @@ export default {
       .catch(error => {
         if (error.response) {
           if (error.response.status === 404) {
-            this.message.posts = 'Could not find any comments'
+            this.message.posts = 'Could not find any posts'
             console.log(this.message.posts)
           }
         } else {
-          this.message.posts = 'Could not load the comments, please try again later'
+          this.message.posts = 'Could not load the posts, please try again later'
         }
         this.posts = []
       })
@@ -59,10 +55,7 @@ export default {
     return {
       user: '',
       posts: [],
-      message: { posts: '', user: '' },
-      text: '',
-      showDismissibleAlert1: false,
-      showDismissibleAlert2: false
+      message: ''
     }
   },
   methods: {
@@ -82,3 +75,11 @@ export default {
   }
 }
 </script>
+
+<style>
+p {
+  color: red;
+  font-family: courier;
+  font-size: 150%;
+}
+</style>
