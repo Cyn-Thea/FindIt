@@ -4,14 +4,15 @@ var bcryptjs = require('bcryptjs');
 
 var userSchema = new Schema({
     username: { 
-        type: String},
+        type: String,
+        unique: true},
     firstName: {
          type: String },
     lastName: { 
         type: String},
     email:  {type: String, 
-        lowercase: true,
-        match:  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/},
+        lowercase: true, unique: true, 
+        match:  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/ , index: true},
     password: {
          type: String},
     collections: [{ 
