@@ -4,10 +4,10 @@
           <h1>Comments</h1>
           <h2> Title: {{ post.title }}</h2>
         </div>
-         <b-button :href="'/addcomment/' + post._id" size="sm"  variant="outline-info" id="commentButton">Add Comment</b-button>
-    <b-alert v-model="showDismissibleAlert1" variant="danger" dismissible>
-        {{ message.comment}}
-    </b-alert>
+         <b-button :href="'/addcomment/' + post._id"
+          size="sm"
+          variant="outline-info"
+          id="commentButton">Add Comment</b-button>
       <p v-if="!comments.length && message === ''">There are no comments yet.</p>
      <div v-for="comment in comments" v-bind:key="comment._id" id="commentscontainer">
       <commentItem :comment="comment" v-on:delete-comment="deleteComment"></commentItem>
@@ -60,10 +60,8 @@ export default {
     return {
       post: '',
       comments: [],
-      message: { comments: '', post: '' },
-      text: '',
-      showDismissibleAlert1: false,
-      showDismissibleAlert2: false
+      message: '',
+      text: ''
     }
   },
   methods: {

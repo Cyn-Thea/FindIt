@@ -84,11 +84,13 @@ export default {
     },
     handleSubmit() {
       const updateUser = {
-        firstName: this.firstName || this.user.firstName,
-        lastName: this.lastName || this.user.lastName,
-        password: this.password || this.user.password
+        username: this.username,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password
       }
-      Api.patch(`/users/${this.user.id}`, updateUser).then(
+      Api.put(`/users/${this.user.id}`, updateUser).then(
         (res) => {
           console.log(res)
           this.message = 'Your Profile has been updated!'

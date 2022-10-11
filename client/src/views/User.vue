@@ -1,7 +1,7 @@
 <template>
   <div id="Postpage">
       <div id="header">
-           <h2 id = "username-lbl"> Hey {{ user.username }}</h2>
+           <h2 id = "username-lbl"> Welcome {{ user.username }}</h2>
         </div>
       <p v-if="!posts.length && message === ''">There are no posts yet.</p>
      <div v-for="post in posts" v-bind:key="post._id" id="commentscontainer">
@@ -26,10 +26,10 @@ export default {
       .catch(error => {
         if (error.response) {
           if (error.response.status === 404) {
-            this.message.user = 'Could not find the user'
+            this.message = 'Could not find the user'
           }
         } else {
-          this.message.user = 'Could not load the user, please try again later'
+          this.message = 'Could not load the user, please try again later'
         }
         this.showDismissibleAlert1 = true
         this.user = {}
@@ -43,10 +43,10 @@ export default {
         if (error.response) {
           if (error.response.status === 404) {
             this.message.posts = 'Could not find any posts'
-            console.log(this.message.posts)
+            console.log(this.message)
           }
         } else {
-          this.message.posts = 'Could not load the posts, please try again later'
+          this.message = 'Could not load the posts, please try again later'
         }
         this.posts = []
       })
