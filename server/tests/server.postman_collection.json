@@ -1,146 +1,33 @@
 {
 	"info": {
-		"_postman_id": "a3a34024-4ba3-4f72-96c0-e86f39ab7e5b",
+		"_postman_id": "05f657c6-d9b8-46cb-85c4-a9049d952c90",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23405671"
 	},
 	"item": [
 		{
-			"name": "create new user",
+			"name": "user signup",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"cupohhhhpo\",\n    \"firstName\": \"cythjvvcjjjtg\",\n    \"lastName\": \"sibanda\",\n    \"email\": \"cupopo23@gmail.com\",\n    \"password\": \"juyuyihjhjpiter\",\n    \"__v\": 0\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create a new comment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"author\": \"63344afdd602e01980f3c3c8\",\n    \"comment\": \"that looks like mine, i liiost it laskkt week\",\n    \"post_data\": \"633e04a53002f4765f505994\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/comments",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"comments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create new post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"catergory\": \"found\",\n    \"title\": \"found iphone charger\",\n    \"description\": \"its a gg white charger with a cars sticker on kit\",\n    \"author\": \"63343f4eb3c2a30ddd7637ff\",\n    \"room\": \"2048\",\n    \"comment\": \"\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create a comment under a post (long)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(201);",
 							"});",
-							""
+							"",
+							"pm.test(\"correct JSON\", function(){",
+							"    pm.expect(\"cindie1\").to.eql(json.username);",
+							"    pm.expect(\"Cynthia\").to.eql(json.firstName);",
+							"    pm.expect(\"Tarwireyi\").to.eql(json.lastName);",
+							"    pm.expect(\"thea1cyn@gmail.com\").to.eql(json.email);",
+							"    pm.expect(\"12345b\").to.eql(json.password);",
+							"})",
+							"",
+							"pm.globals.set(\"user_id\", json._id)"
 						],
 						"type": "text/javascript"
 					}
@@ -151,283 +38,13 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"author\": \"63344b15d602e01980f3c3ca\",\n    \"comment\": \"you liar\",\n    \"post_data\": \"633c9fd3da3b939ea974889e\"\n}",
+					"raw": "{\n    \"username\": \"cindie1\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Tarwireyi\",\n    \"email\": \"thea1cyn@gmail.com\",\n    \"password\": \"12345b\",\n    \"__v\": 0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/633c9fd3da3b939ea974889e/comments",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"633c9fd3da3b939ea974889e",
-						"comments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "a user creating a new collection",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"post_id\": [\n        \"63341d4131992a4fafb0f9ab\"\n    ],\n    \"title\": \"give to ruth now\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/users/633532baec8b4609f050b1bf/collections",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"633532baec8b4609f050b1bf",
-						"collections"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create a new collection",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"post_id\": [\n        \"63343f39b3c2a30ddd7637fc\"\n    ],\n    \"title\": \"my lost blazer dd\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/collections",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"collections"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"jane@gmail.com\",\n    \"password\": \"1234\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/users/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/users/:id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "63452bef9c7b780f5dd2dbef"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all posts",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all comments",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/comments",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"comments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "all users",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/api/users",
 					"protocol": "http",
@@ -444,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "get posts made by a user",
+			"name": "get user by id",
 			"event": [
 				{
 					"listen": "test",
@@ -462,7 +79,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/users/6333cce93cd7427bf614c72d/posts",
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -471,331 +88,7 @@
 					"path": [
 						"api",
 						"users",
-						"6333cce93cd7427bf614c72d",
-						"posts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get posts by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/posts/6340ba6e37cfbd7fd9ba20ed",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"6340ba6e37cfbd7fd9ba20ed"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "filter posts by catergory",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/postFiltered?category=lost",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"postFiltered"
-					],
-					"query": [
-						{
-							"key": "category",
-							"value": "lost"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "sort posts by date",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/postSort",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"postSort"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get comments by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/comments/63358d5ec21e7d983f06f825",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"comments",
-						"63358d5ec21e7d983f06f825"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get comments under a post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/posts/633586ad9077d37546f8aea0/comments",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"633586ad9077d37546f8aea0",
-						"comments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all collections",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/collections",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"collections"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get collection by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/collections/633535f01138810f9ca762d0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"collections",
-						"633535f01138810f9ca762d0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "list of collections made by a user",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/users/63344b15d602e01980f3c3ca/collections",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"63344b15d602e01980f3c3ca",
-						"collections"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get a users specific collection",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/users/63344b15d602e01980f3c3ca/collections/633535f01138810f9ca762d0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"63344b15d602e01980f3c3ca",
-						"collections",
-						"633535f01138810f9ca762d0"
+						"{{user_id}}"
 					]
 				}
 			},
@@ -821,7 +114,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n            \"username\": \"cindie97\",\n            \"firstName\": \"Cyntheea\",\n            \"lastName\": \"Tarwireyi\",\n            \"email\": \"thea97cyn@gmail.com\",\n            \"password\": \"12345b\",\n            \"__v\": 0\n        }",
+					"raw": "{\n    \"username\": \"cindie1\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Sibanda\",\n    \"email\": \"thea1cyn@gmail.com\",\n    \"password\": \"12345b\",\n    \"__v\": 0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -829,7 +122,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/63452bef9c7b780f5dd2dbef",
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -838,179 +131,7 @@
 					"path": [
 						"api",
 						"users",
-						"63452bef9c7b780f5dd2dbef"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update a post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"comments\": [\n        \"6335d44f3cd616ef2c774aa5\",\n        \"6335d2623cd616ef2c774a6c\",\n        \"6335b2310a73b2d0be292c6f\"\n    ],\n    \"catergory\": \"found\",\n    \"title\": \"lost iphone charger\",\n    \"description\": \"its a white charger with a cars sticker on it and oooooo\",\n    \"author\": \"63343f4eb3c2a30ddd7637ff\",\n    \"building\": \"jupiter\",\n    \"room\": \"204\",\n    \"date\": null\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/633586ad9077d37546f8aea0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"633586ad9077d37546f8aea0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update comment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"_id\": \"6335d44f3cd616ef2c774aa5\",\n    \"author\": \"63344b15d602e01980f3c3ca\",\n    \"comment\": \"3.that looks like mine, i lost it last weekii\",\n    \"post_data\": \"633586ad9077d37546f8aea0\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/comments/6335d44f3cd616ef2c774aa5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"comments",
-						"6335d44f3cd616ef2c774aa5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update collection",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"post_id\": [\n        \"63343f39b3c2a30ddd7637fc\",\n        \"6334156d31992a4fafb0f9aa\",\n        \"63341dce31992a4fafb0f9ac\"\n    ],\n    \"title\": \"my lost items from yes\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/collections/633535f01138810f9ca762d0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"collections",
-						"633535f01138810f9ca762d0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update collection",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"title\": \"my found itemggs\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/collections/6334a8dc31992a4fafb0f9b0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"collections",
-						"6334a8dc31992a4fafb0f9b0"
+						"{{user_id}}"
 					]
 				}
 			},
@@ -1036,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"tnicl\",\n    \"lastName\": \"taiwan\"\n}",
+					"raw": "{\n    \"firstName\": \"theaCyn\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1044,7 +165,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/63344b15d602e01980f3c3ca",
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1053,93 +174,7 @@
 					"path": [
 						"api",
 						"users",
-						"63344b15d602e01980f3c3ca"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "partially update a post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"_id\": \"63341d4131992a4fafb0f9ab\",\n    \"description\": \" its an apple charger found at 13:00..\",\n    \"author\": \"63344b15d602e01980f3c3ca\",\n    \"room \": \"234B\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/63341d4131992a4fafb0f9ab",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"63341d4131992a4fafb0f9ab"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "partiallly update comment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"comment\": \"that looks like mine, does it has a grey sticker ojjn? \"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/comments/63346648fe31143200f0ed56",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"comments",
-						"63346648fe31143200f0ed56"
+						"{{user_id}}"
 					]
 				}
 			},
@@ -1152,7 +187,9 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -1162,7 +199,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/users/:id",
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1171,251 +208,7 @@
 					"path": [
 						"api",
 						"users",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "63452afe9c7b780f5dd2dbdc"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete a certain comment under a post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"author\": \"63344b15d602e01980f3c3ca\",\n    \"comment\": \"that looks like mine, can we meeet up this afternoon?\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/:id/comments/:id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						":id",
-						"comments",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete a collection by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/collections/:id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"collections",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete a post by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/posts/:id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete a comment under a post",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/posts/:id/comments/:id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						":id",
-						"comments",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete a comment with given id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/comment/:id",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"comment",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"category\": \"lost\",\n    \"title\": \"found iphone charger\",\n    \"description\": \"iiiiiiiiiiia cars sticker on kit\",\n    \"buildimg\": \"2048\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/users/63344afdd602e01980f3c3c8/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"users",
-						"63344afdd602e01980f3c3c8",
-						"posts"
+						"{{user_id}}"
 					]
 				}
 			},

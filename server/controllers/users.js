@@ -12,7 +12,7 @@ router.post('/api/users', function(req, res, next){
     })
 });
 
- // create new post ()
+ // create new post (works)
 router.post('/api/users/:id/posts', function(req, res, next) {
     var id = req.params.id;
     var post = new Post(req.body);
