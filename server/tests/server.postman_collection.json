@@ -1,18 +1,75 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
-		"name": "server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "417af9da-0eca-4c04-ba5c-d58f2976c6a7",
+		"name": "users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23405671"
 	},
 	"item": [
 		{
-			"name": "GET /api",
+			"name": "user signup",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
 						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"correcy JSON\", function(){",
+							"    pm.expect(\"fafy\").to.eql(json.username);",
+							"    pm.expect(\"Cynthia\").to.eql(json.firstName);",
+							"    pm.expect(\"Tarwireyi\").to.eql(json.lastName);",
+							"    pm.expect(\"fafy@gmail.com\").to.eql(json.email);",
+							"    pm.expect(\"12345b\").to.eql(json.password);",
+							"})",
+							"",
+							"pm.globals.set(\"user_id\", json._id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"fafy\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Tarwireyi\",\n    \"email\": \"fafy@gmail.com\",\n    \"password\": \"12345b\",\n    \"__v\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -21,55 +78,176 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
-					"raw": "{{host}}/api",
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
-						"api"
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.globals.get(\"user_id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"cindie9\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Tarwireyi\",\n    \"email\": \"thea9cyn@gmail.com\",\n    \"password\": \"12345bbb\",\n    \"__v\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partially update a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lastName\": \"Doe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{user_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
 					]
 				}
 			},
 			"response": []
 		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"id": "cd185905-a834-4211-8030-583d17702534",
-			"key": "host",
-			"value": "http://localhost:3000",
-			"type": "string"
-		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
