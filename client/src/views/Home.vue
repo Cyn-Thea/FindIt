@@ -68,7 +68,6 @@ export default {
           this.error = err.response.data.error
           this.message = 'Invalid login credentials'
           this.showDismissibleAlert = true
-          this.$router.push('/')
         }
       )
     }
