@@ -47,11 +47,10 @@ export default {
       .catch(error => {
         if (error.response) {
           if (error.response.status === 404) {
-            this.message.comments = 'Could not find any comments'
-            console.log(this.message.comments)
+            console.log(this.message)
           }
         } else {
-          this.message.comments = 'Could not load the comments, please try again later'
+          this.message = 'Could not load the comments, please try again later'
         }
         this.comments = []
       })

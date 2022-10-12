@@ -18,11 +18,12 @@
           title="Filter by found"
           v-on:click=";(selectedCategory = 'found'), sortByCategory()"
           >Found</b-button>
+          <div class=" grid">
+             <ul v-if="layout === 'grid'" class="card-list">
            <p v-if="!posts.length && message === ''">There are no posts yet.</p>
       <b-container class="listitem"
          v-for="post in posts"
-        v-bind:key="post._id"
-        align-h="center">
+        v-bind:key="post._id">
             <b-col>{{ post.category }}</b-col>
             <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
@@ -32,6 +33,8 @@
              <a :href="'/posts/' + post._id">view all comments</a>
           </b-card>
       </b-container>
+         </ul>
+    </div>
     </div>
 </template>
 
@@ -49,7 +52,8 @@ export default {
     return {
       posts: [],
       message: '',
-      error: ''
+      error: '',
+      layout: 'grid'
     }
   },
   methods: {
@@ -77,9 +81,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .listitem {
-  margin-bottom: 1em;
+  margin-bottom: 0em;
   background-color: rgb(219, 237, 239);
   color: #000000;
   border: 2px solid #087d94;
@@ -97,5 +101,34 @@ export default {
   width: 85px;
   height: 50px;
 }
+.card-list {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+}
+@media only screen and (max-width: 768px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+  }
+}
 
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+      width: 100%;
+  }
+  .card-list {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}
 </style>
