@@ -28,8 +28,9 @@
             <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
             <b-col> Description: {{ post.description }}</b-col>
-            <b-col> Found at: {{ post.building }}</b-col>
-          <b-card class="comment-listitem" >
+            <b-col> Location details: {{ post.building }}</b-col>
+            <b-col> posted on: {{ post.date }}</b-col>
+          <b-card id="commentitem" >
              <a :href="'/posts/' + post._id">view all comments</a>
           </b-card>
       </b-container>
@@ -86,9 +87,21 @@ export default {
   margin-bottom: 0em;
   background-color: rgb(219, 237, 239);
   color: #000000;
-  border: 2px solid #087d94;
+  border: 2px solid #12579b;
   border-radius: 10px;
   padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+#commentitem{
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  background-color: rgb(116, 209, 219);
+  color: #000000;
+  border: 2px solid #c41693;
+  border-radius: 10px;
+  padding: 2px 2px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
