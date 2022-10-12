@@ -105,10 +105,10 @@ export default {
   color: #01080e;
 }
 a:hover, a:active {
-  background-color: #0b6c8c;
-  text-decoration: underline;
-  border-radius: 20px;
+  background-color: #4c93a6;
+  border-radius: 50px;
 }
+
 html body {
   background-color: #c8dee6;
 }
