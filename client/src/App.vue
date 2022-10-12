@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <div id="nav">
-      <b-navbar toggleable="md" type="dark" variant="info" class="navbar navbar-light">
+      <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
       <b-navbar-nav class="ms-auto" style="float: right">
          <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>
@@ -105,7 +105,7 @@ export default {
   color: #01080e;
 }
 a:hover, a:active {
-  background-color: #4c93a6;
+  background-color: #84a4ac;
   border-radius: 50px;
 }
 
