@@ -4,14 +4,35 @@ var Post = require('../models/post');
 var User = require('../models/user');
 var ObjectId = require('mongoose').Types.ObjectId;
  
-//Creates a new post(works)
+/* //Creates a new post(works) remove this
 router.post('/api/posts', function(req, res, next){
    var post= new Post(req.body);
    post.save(function(err, post) {
        if (err) { return next(err); }
        res.status(201).json(post);
    })
-});  
+});   */
+
+ // user creates a new post (works)
+ router.post('/api/users/:id/posts', function(req, res, next) {
+    var id = req.params.id;
+    var post = new Post(req.body);
+    
+    User.findById(id, function(err, user) {
+        if (user == null) {
+            return res.status(404).json({"message": "user not found"});
+        }
+        if (err) { return next(err); }
+
+        post.user = user._id;
+        user.posts.push(post);
+        user.save();
+    });
+     post.save(function(err) {
+        if (err) { return next(err); }
+        res.status(201).json(post);
+    });
+});
 
 
 // Return a list of all posts (works)
@@ -20,6 +41,28 @@ router.get('/api/posts', function(req, res, next) {
        if (err) { return next(err); }
        res.json({'posts': posts });
    });
+});
+
+ // get all posts of a user(works)
+ router.get('/api/users/:id/posts', function (req, res, next) {
+    var id = req.params.id;
+   User.findById(id, function (err, user) {
+        if (err) { 
+            return next(err); }
+    }).populate('posts').exec(function (err, user) {
+        if (user == null) { 
+            var err = new Error('No user found');
+            err.status = 404;
+            return next(err); 
+        } 
+        if (user.posts.length == 0) {
+            var err = new Error('No posts found');
+            err.status = 404;
+            return next(err);
+        }
+        console.log('posts with specified post retreived');
+        res.status(200).json(user);
+    });
 });
 
 // Return post with the given ID (works)
@@ -72,8 +115,6 @@ router.put('/api/posts/:id', function(req, res, next) {
        post.description = req.body.description;
        post.author = req.body.author;
        post.building = req.body.building;
-       post.room = req.body.room;
-       post.additionalInformation = req.body.additionalInformation;
        post.comments = req.body.comments;
        post.date= req.body.date;
        post.save();
@@ -97,8 +138,6 @@ router.patch('/api/posts/:id', function(req, res, next) {
        post.description = (req.body.description || post.description);
        post.author = (req.body.author || post.author);
        post.building = (req.body.building || post.building);
-       post.room = (req.body.room || post.room);
-       post.additionalInformation = (req.body.building || post.additionalInformation);
        post.comment = (req.body.comment || post.comment);
        post.date = (req.body.room || post.date);
        post.save();
