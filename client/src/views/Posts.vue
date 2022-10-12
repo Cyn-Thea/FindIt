@@ -97,7 +97,7 @@ export default {
 #commentitem{
   margin-bottom: 0.5em;
   margin-top: 0.5em;
-  background-color: rgb(116, 209, 219);
+  background-color: rgb(116, 200, 219);
   color: #000000;
   border: 2px solid #c41693;
   border-radius: 10px;
