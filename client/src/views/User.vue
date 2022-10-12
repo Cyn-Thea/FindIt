@@ -42,7 +42,6 @@ export default {
       .catch(error => {
         if (error.response) {
           if (error.response.status === 404) {
-            this.message.posts = 'Could not find any posts'
             console.log(this.message)
           }
         } else {
