@@ -92,7 +92,7 @@ export default {
           this.$router.push('/')
         },
         (err) => {
-          this.error = err.response.data.error
+          this.error = err.response.error
           this.message = 'Invalid credentials'
           this.showDismissibleAlert = true
         }
