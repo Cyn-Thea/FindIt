@@ -18,6 +18,7 @@
           title="Filter by found"
           v-on:click=";(selectedCategory = 'found'), sortByCategory()"
           >Found</b-button>
+           <p v-if="!posts.length && message === ''">There are no posts yet.</p>
       <b-container class="listitem"
          v-for="post in posts"
         v-bind:key="post._id"
@@ -47,13 +48,8 @@ export default {
   data() {
     return {
       posts: [],
+      message: '',
       error: ''
-    }
-  },
-  computed: {
-    isAuthor() {
-      const username = JSON.parse(localStorage.getItem('currentUser'))
-      return this.post.author === username
     }
   },
   methods: {

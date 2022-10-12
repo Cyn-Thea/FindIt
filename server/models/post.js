@@ -17,7 +17,8 @@ var postSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: 'comments' }],
     date: {
-        type: Date}
+        type: Date,
+        default: Date.now}
 });
 
 

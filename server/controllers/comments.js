@@ -11,7 +11,7 @@ router.post('/api/comments', function(req, res, next){
         if (err) { return next(err); }
         res.status(201).json(comments);
     })
-})
+});
 
 // create new comment ()
 router.post('/api/posts/:post_id/comments', function(req, res, next) {
@@ -143,13 +143,17 @@ router.delete('/api/posts/:postId/comments/:commentId', function (req, res, next
     })
 });
 
-//Delete all
-router.delete('/api/comments',function(req,res,next){
-    Comment.deleteMany({},function(err,comments){
-        if(err){return next(err);}
-        if(comments == null){return res.status(404).json({"message":"comment not found"});}
-        res.json(comment);
+
+//Deletes all comments
+router.delete('/api/comments', function(req, res) {
+    Comment.deleteMany({}, function(err, comments) {
+        if (err) {return res.status(409).json({message: 'comments not deleted!', 'error': err}); }
+        if (comments === null) {
+            return res.status(404).json({'message': 'comments not found'});
+        }
+        res.json(comments);
     });
-});
+ });
+ 
 
 module.exports = router;

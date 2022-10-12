@@ -1,17 +1,19 @@
 <template>
 <div id="app">
     <div id="nav">
-      <b-navbar type="dark" variant="info" class="navigation" >
-      <b-navbar-nav class="ml-auto">
+      <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
+      <b-navbar-nav class="ms-auto" style="float: right">
+         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+          <b-collapse id="nav-collapse" is-nav>
           <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
-          <b-nav-item class="nav-item" href="/users">Users</b-nav-item>
-           <b-nav-item class="nav-item" href="/user">User</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item-dropdown text="Settings" right>
            <b-dropdown-item href="/profile">Profile</b-dropdown-item>
            <b-dropdown-item  @click="logout">Logout</b-dropdown-item>
            <b-dropdown-item @click="$bvModal.show('bv-modal')">Deactivate Account</b-dropdown-item>
+           <b-dropdown-item href="/users">Admin</b-dropdown-item>
          </b-nav-item-dropdown>
+       </b-collapse>
       </b-navbar-nav>
           <b-modal id="bv-modal" hide-footer>
        <template #modal-title>Delete Account</template>
@@ -103,18 +105,22 @@ export default {
   color: #01080e;
 }
 a:hover, a:active {
-  background-color: #7fb4c6;
-  color: white;
+  background-color: #84a4ac;
+  border-radius: 50px;
 }
+
 html body {
-  background-color: #bfe7f0;
+  background-color: #c8dee6;
+}
+#bar {
+  border-bottom : 1px solid #ec0ebc;
 }
 @media only screen and (min-device-width: 360px) and (max-device-height: 768px) and (-webkit-device-pixel-ratio: 3) {
   .navigation {
     position: sticky-bottom;
   }
   .ml-auto {
-    margin-right: 0;
+    margin-right: 6;
   }
 }
 </style>

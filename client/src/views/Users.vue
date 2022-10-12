@@ -9,11 +9,10 @@
          v-for="user in users"
         v-bind:key="user._id"
         align-h="center">
-            <b-col>{{ user.username }}</b-col>
-            <b-col>Post by: {{ user.email}}</b-col>
-          <b-card class="comment-listitem" >
-             <a :href="'/users/' + user._id">view all posts</a>
-          </b-card>
+            <b-col> Username: {{ user.username }}</b-col>
+            <b-col> First Name: {{ user.firstName }}</b-col>
+            <b-col> Last Name: {{ user.lastName}}</b-col>
+            <b-col> Email: {{ user.email}}</b-col>
       </b-container>
     </div>
 </template>
@@ -44,6 +43,25 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    updateUser() {
+      const updateUser = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        password: this.password
+      }
+      Api.put(`/users/${this.user.id}`, updateUser).then(
+        (res) => {
+          console.log(res)
+          this.message = 'Your Profile has been updated!'
+          this.showDismissibleAlert = true
+        },
+        (err) => {
+          console.log(err.response)
+          this.message = 'Profile could not be updated, please try again later'
+          this.showDismissibleAlert = true
+        }
+      )
     }
     /* deleteAllUsers() {
       Api.delete('/users')
