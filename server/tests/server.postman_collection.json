@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a8e4288-1c4b-4318-962f-d74120bc0884",
+		"_postman_id": "00db9a94-ea18-42a7-8c1c-8abbe7f98864",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23405671"
@@ -35,6 +35,202 @@
 					],
 					"path": [
 						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"correct JSON\", function(){",
+							"    pm.expect(\"cindie1\").to.eql(json.username);",
+							"    pm.expect(\"Cynthia\").to.eql(json.firstName);",
+							"    pm.expect(\"Tarwireyi\").to.eql(json.lastName);",
+							"    pm.expect(\"thea1cyn@gmail.com\").to.eql(json.email);",
+							"    pm.expect(\"12345b\").to.eql(json.password);",
+							"})",
+							"",
+							"pm.globals.set(\"user_id\", json._id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"cindie1\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Tarwireyi\",\n    \"email\": \"thea1cyn@gmail.com\",\n    \"password\": \"12345b\",\n    \"__v\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"correct JSON\", function(){",
+							"    pm.expect(\"lost\").to.eql(json.category);",
+							"    pm.expect(\"Found a water bottle\").to.eql(json.title);",
+							"    pm.expect(\"it is silver\").to.eql(json.description);",
+							"    pm.expect(\"i found it as svea in room 234\").to.eql(json.building);",
+							"})",
+							"",
+							"pm.globals.set(\"post_id\", json._id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"lost\",\n    \"title\": \"Found a water bottle\",\n    \"description\": \"it is silver\",\n    \"building\": \"i found it as svea in room 234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a comment under a post (long)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"correct JSON\", function(){",
+							"    pm.expect(\"that looks like mine\").to.eql(json.comment);",
+							"})",
+							"",
+							"pm.globals.set(\"comment_id\", json._id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"that looks like mine\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}/comments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a new comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"that looks like mine, i liiost it laskkt week\",\n    \"post_data\": \"633e04a53002f4765f505994\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/comments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"comments"
 					]
 				}
 			},
@@ -97,6 +293,765 @@
 					"path": [
 						"api",
 						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/comments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get posts by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comments by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/comments/{{comment_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"comments",
+						"{{comment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sort posts by date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/postSort",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"postSort"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter posts by catergory",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/postFiltered?category=lost",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"postFiltered"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "lost"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comments under a post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}/comments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get posts made by a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"cindie1\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Sibanda\",\n    \"email\": \"thea1cyn@gmail.com\",\n    \"password\": \"12345b\",\n    \"__v\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"lost\",\n    \"title\": \"Found a water bottle\",\n    \"description\": \"it is silver and has a black handle\",\n    \"building\": \"i found it as svea in room 234\",\n    \"date\": \"2022-10-11T13:28:00.759Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"3.that looks like mine, i lost it last week\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/comments/{{comment_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"comments",
+						"{{comment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partially update a post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"building\": \"i found it as svea, the second floow, in room 234B\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partially update a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"theaCyn\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partiallly update comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"that looks like mine, does it has a grey sticker it? \"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/comments/{{comment_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"comments",
+						"{{comment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a certain comment under a post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\": \"63344b15d602e01980f3c3ca\",\n    \"comment\": \"that looks like mine, can we meeet up this afternoon?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}/comments/{{comment_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}",
+						"comments",
+						"{{comment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a post by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/posts/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/comments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"correct JSON\", function(){",
+							"    pm.expect(\"cindie11\").to.eql(json.username);",
+							"    pm.expect(\"Cynthia\").to.eql(json.firstName);",
+							"    pm.expect(\"Tarwireyi\").to.eql(json.lastName);",
+							"    pm.expect(\"thea11cyn@gmail.com\").to.eql(json.email);",
+							"    pm.expect(\"12345b\").to.eql(json.password);",
+							"})",
+							"",
+							"pm.globals.set(\"user_id\", json._id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"cindie11\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Tarwireyi\",\n    \"email\": \"thea11cyn@gmail.com\",\n    \"password\": \"12345b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
 					]
 				}
 			},
