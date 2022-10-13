@@ -6,8 +6,7 @@ import CreatePost from './views/CreatePost.vue'
 import Profile from './views/Profile.vue'
 import Posts from './views/Posts.vue'
 import Post from './views/Post.vue'
-import CreateComment from './views/CreateComment.vue'
-import Activity from './views/Activity.vue'
+import CreateComment from './components/CreateComment.vue'
 import Users from './views/Users.vue'
 import User from './views/User.vue'
 
@@ -66,12 +65,6 @@ export default new Router({
       path: '/users/:id',
       name: 'user',
       component: User
-    },
-    {
-      path: '/activity/:id',
-      name: 'activity',
-      component: Activity
     }
-
   ]
 })
