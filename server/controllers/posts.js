@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Post = require('../models/post');
 var User = require('../models/user');
-var ObjectId = require('mongoose').Types.ObjectId;
  
-/* //Creates a new post(works) remove this
+/* //Creates a new post
 router.post('/api/posts', function(req, res, next){
    var post= new Post(req.body);
    post.save(function(err, post) {
@@ -13,17 +12,15 @@ router.post('/api/posts', function(req, res, next){
    })
 });   */
 
- // user creates a new post (works)
+ // user creates a new post
  router.post('/api/users/:id/posts', function(req, res, next) {
     var id = req.params.id;
     var post = new Post(req.body);
-    
-    User.findById(id, function(err, user) {
+     User.findById(id, function(err, user) {
         if (user == null) {
-            return res.status(404).json({"message": "user not found"});
+            return res.status(404).json({"message": "User not found"});
         }
         if (err) { return next(err); }
-
         post.user = user._id;
         user.posts.push(post);
         user.save();
@@ -34,8 +31,7 @@ router.post('/api/posts', function(req, res, next){
     });
 });
 
-
-// Return a list of all posts (works)
+// Return a list of all posts
 router.get('/api/posts', function(req, res, next) {
    Post.find(function(err, posts) {
        if (err) { return next(err); }
@@ -43,7 +39,7 @@ router.get('/api/posts', function(req, res, next) {
    });
 });
 
- // get all posts of a user(works)
+ // get all posts of a user
  router.get('/api/users/:id/posts', function (req, res, next) {
     var id = req.params.id;
    User.findById(id, function (err, user) {
@@ -65,7 +61,7 @@ router.get('/api/posts', function(req, res, next) {
     });
 });
 
-// Return post with the given ID (works)
+// Return post with the given ID
 router.get('/api/posts/:id', function(req, res, next) {
    var id = req.params.id;
    Post.findById(id, function(err,post) {
@@ -76,7 +72,7 @@ router.get('/api/posts/:id', function(req, res, next) {
        res.json(post);
    });
 });
-// filter posts by category (works)
+// filter posts by category
 router.get('/api/postFiltered', function(req, res, next) {
     if (!req.query.category){return next();}
     Post.find({
@@ -91,7 +87,7 @@ router.get('/api/postFiltered', function(req, res, next) {
     });
 });
 
-//Get posts sorted by post dates (old to new works)
+//Get posts sorted by post dates (old to new)
 router.get('/api/postSort', function (req, res, next) {
     Post.find().sort({
         date: req.query.sortByDate
@@ -102,7 +98,7 @@ router.get('/api/postSort', function (req, res, next) {
     })
 });
  
-//Update post with the given ID (works)
+//Update post with the given ID
 router.put('/api/posts/:id', function(req, res, next) {
    var id = req.params.id;
    Post.findById(id, function(err, post) {
@@ -122,7 +118,7 @@ router.put('/api/posts/:id', function(req, res, next) {
    });
 });
 
-//Partially update a post with the given ID(works)
+//Partially update a post with the given ID
 router.patch('/api/posts/:id', function(req, res, next) {
    var id = req.params.id;
    Post.findById(id, function(err, post) {
