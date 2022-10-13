@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import CreatePost from './views/CreatePost.vue'
 import Profile from './views/Profile.vue'
 import Posts from './views/Posts.vue'
-import Post from './views/Post.vue'
+import Post from './components/Post.vue'
 import CreateComment from './components/CreateComment.vue'
 import Users from './views/Users.vue'
-import User from './views/User.vue'
+import User from './components/User.vue'
 
 Vue.use(Router)
 
@@ -23,8 +23,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'login',
+      component: Login
     },
     {
       path: '/addcomment/:id',

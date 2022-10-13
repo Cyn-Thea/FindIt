@@ -40,7 +40,7 @@
 import { Api } from '@/Api'
 
 export default {
-  name: 'home',
+  name: 'login',
   data() {
     return {
       email: '',
