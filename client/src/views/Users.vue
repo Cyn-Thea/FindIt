@@ -81,9 +81,9 @@ export default {
 .userlist {
   margin-bottom: 1em;
   margin-top: 1.5em;
-  background-color: rgb(125, 176, 188);
+  background-color: rgb(219, 232, 235);
   color: #000000;
-  border: 2px solid #c41693;
+  border: 2px solid #ef1414;
   border-radius: 10px;
   padding: 2px 6px;
   text-align: center;

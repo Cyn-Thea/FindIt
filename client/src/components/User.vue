@@ -5,7 +5,7 @@
         </div>
       <p v-if="!posts.length && message === ''">There are no posts yet.</p>
      <div v-for="post in posts" v-bind:key="post._id" id="commentscontainer">
-      <userItem v-bind:post="post" v-on:delete-post="deletepost"></userItem>
+      <userItem :post="post" v-on:delete-post="deletePost"></userItem>
     </div>
   </div>
 </template>
@@ -58,14 +58,12 @@ export default {
     }
   },
   methods: {
-    deleteComment(id) {
-      // Delete from the API database
-      Api.delete('/posts/' + this.$route.params.id + `/comments/${id}`)
+    deletePost(id) {
+      Api.delete(`/posts/${id}`)
         .then(response => {
           this.message = response.data
-          // Delete the review from the data array
-          const index = this.comments.findIndex(review => review._id === id)
-          this.comments.splice(index, 1)
+          const index = this.posts.findIndex(post => post._id === id)
+          this.posts.splice(index, 1)
         })
         .catch(error => {
           console.error(error)

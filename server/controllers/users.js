@@ -1,27 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-var Post = require('../models/post');
 
-// create new user(works)
+// create new user
 router.post('/api/users', function(req, res, next){
     var user = new User(req.body);
     user.save(function(err, user) {
         if (err) { return next(err); }
         res.status(201).json(user);
     })
-});
+}); 
 
-// create new user(works)
-router.post('/api/users', function(req, res, next){
-    var user = new User(req.body);
-    user.save(function(err, user) {
-        if (err) { return next(err); }
-        res.status(201).json(user);
-    })
-});
-
-// get all users (works)
+// get all users
 router.get('/api/users', function(req, res, next) {
     User.find(function(err, users) {
         if (err) { return next(err); }
@@ -29,7 +19,7 @@ router.get('/api/users', function(req, res, next) {
     });
 });
 
-// Find user by ID (works)
+// Find user by ID
 router.get('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
     User.findById(id, function(err, user) {
@@ -41,7 +31,7 @@ router.get('/api/users/:id', function(req, res, next) {
     });
 });
 
-// Update the user with the given ID (works)
+// Update the user with the given ID
 router.put('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
     User.findById(id, function(err, user) {
@@ -54,14 +44,13 @@ router.put('/api/users/:id', function(req, res, next) {
         user.lastName = req.body.lastName;
         user.email = req.body.email;
         user.password = req.body.password;
-        user.collections = req.body.collections;
         user.posts = req.body.posts;
         user.save();
         res.json(user);
     });
  });
 
-//Partially update the user with the given ID (works)
+//Partially update the user with the given ID
 router.patch('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
     User.findById(id, function(err, user) {
@@ -74,14 +63,13 @@ router.patch('/api/users/:id', function(req, res, next) {
         user.lastName = req.body.lastName || user.lastName;
         user.email = req.body.email || user.email;
         user.password = req.body.password || user.password;
-        user.collections = req.body.collections || user.collections;
         user.posts = req.body.posts || user.posts;
         user.save();
         res.json(user);
     });
  });
  
-// Delete user by id(works)
+// Delete user by id
 router.delete('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
     User.findOneAndDelete({_id: id}, function(err, user) {
@@ -93,7 +81,7 @@ router.delete('/api/users/:id', function(req, res, next) {
     });
 });
 
-//Delete all
+//Delete all users
 router.delete('/api/users', function (req, res, next) {
     User.remove({}, function (err, user) {
         if (err) { return next(err); }

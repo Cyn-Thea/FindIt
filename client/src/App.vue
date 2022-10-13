@@ -11,7 +11,7 @@
       <b-navbar-nav class="ms-auto" style="float: right">
          <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>
-          <b-nav-item class="nav-item" href="/posts">Posts</b-nav-item>
+          <b-nav-item class="nav-item" href="/posts">Home</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item-dropdown text="Settings" right>
            <b-dropdown-item href="/profile">Profile</b-dropdown-item>
@@ -26,8 +26,8 @@
        <div class="d-block text-center">
          <h3>Are you sure you want to permanetly delete your account?</h3>
         </div>
-       <b-button type="button" class="btn btn-danger mb-9 ml-3" @click="deleteAccount">Delete</b-button>
-       <b-button type="button" class="btn btn-secondary mb-9 ml-3" @click="$bvModal.hide('bv-modal')">Cancel</b-button>
+       <b-button type="button" class="btn btn-danger" @click="deleteAccount">Yes</b-button>
+       <b-button type="button" class="btn btn-info mb-9 ml-3" @click="$bvModal.hide('bv-modal')">Cancel</b-button>
        </b-modal>
     </b-navbar>
     <router-view v-bind:user="user"/>

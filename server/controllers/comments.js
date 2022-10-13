@@ -4,7 +4,7 @@ var Comment = require('../models/comment');
 var Post = require('../models/post');
 var User = require('../models/user')
 
-// create new comment (works)
+// create new comment
 router.post('/api/comments', function(req, res, next){
     var comments = new Comment(req.body);
     comments.save(function(err, comments) {
@@ -13,29 +13,26 @@ router.post('/api/comments', function(req, res, next){
     })
 });
 
-// create new comment ()
+// create new comment
 router.post('/api/posts/:post_id/comments', function(req, res, next) {
     var post_id = req.params.post_id;
     var comment = new Comment(req.body);
-    
     Post.findById(post_id, function(err, post) {
         if (post == null) {
             return res.status(404).json({"message": "post not found"});
         }
         if (err) { return next(err); }
-
         comment.post = post._id;
         post.comments.push(comment);
         post.save();
     });
-
     comment.save(function(err) {
         if (err) { return next(err); }
         res.status(201).json(comment);
     });
 });
 
-// Return a list of all comments (works)
+// Return a list of all comments
 router.get('/api/comments', function(req, res, next) {
     Comment.find(function(err, comments) {
         if (err) { return next(err); }
@@ -43,7 +40,7 @@ router.get('/api/comments', function(req, res, next) {
     });
  });
 
-// Return the comment with the given ID(works)
+// Return the comment with the given ID
 router.get('/api/comments/:id', function(req, res, next) {
     var id = req.params.id;
     Comment.findById(id, function(err, comment) {
@@ -55,7 +52,7 @@ router.get('/api/comments/:id', function(req, res, next) {
     });
  });
 
- // get all comments under a post(works)
+ // get all comments under a post
 router.get('/api/posts/:id/comments', function (req, res, next) {
     var id = req.params.id;
     Post.findById(id, function (err, post) {
@@ -77,7 +74,7 @@ router.get('/api/posts/:id/comments', function (req, res, next) {
     });
 });
 
- //using put function (works)
+ //update a comment
 router.put('/api/comments/:id',function(req,res,next) {
     var id = req.params.id;
    Comment.findById(id, function(err, comment) {
@@ -91,7 +88,7 @@ router.put('/api/comments/:id',function(req,res,next) {
     });
 });
 
-//using patch function (works)
+//partiallu update a comment
 router.patch('/api/comments/:id', function(req, res, next) {
     var id = req.params.id;
     Comment.findByIdAndUpdate(id, req.body,{new: true}, function(err,comment ) {
@@ -107,7 +104,7 @@ router.patch('/api/comments/:id', function(req, res, next) {
     })
 });
 
-// Delete a comment with the given ID (works)
+// Delete a comment with the given ID
 router.delete('/api/comments/:id', function(req, res, next) {
     var id = req.params.id;
     Comment.findOneAndDelete({_id: id}, function(err, comment) {
@@ -119,7 +116,7 @@ router.delete('/api/comments/:id', function(req, res, next) {
     });
  });
 
- // delete a certain comment under a post (works)
+ // delete a certain comment under a post
 router.delete('/api/posts/:postId/comments/:commentId', function (req, res, next) {
     var postId = req.params.postId;
     var commentId = req.params.commentId;
@@ -135,7 +132,7 @@ router.delete('/api/posts/:postId/comments/:commentId', function (req, res, next
             try {
                 await Post.updateOne({_id: post._id}, { $pullAll: {comments: [comment._id] }} );
                 res.status(200).json(comment);
-                console.log('Specific comment deleted');
+                console.log('comment deleted');
             } catch (err) {
                 next(err);
             }
