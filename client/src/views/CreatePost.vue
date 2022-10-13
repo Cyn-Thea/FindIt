@@ -5,6 +5,7 @@
         <div class="header">
           <h1>Create Post</h1>
         </div>
+        <b-container class="listitem">
            <div class="form-group">
             <select
             id="category"
@@ -13,8 +14,8 @@
             v-model="category"
             placeholder="category">
              <option disabled value="">Select post type</option>
-              <option>lost</option>
-              <option>found</option>
+              <option>LOST</option>
+              <option>FOUND</option>
             </select>
         </div>
        <div class="form-group">
@@ -22,7 +23,7 @@
             type="title"
             class="form-control"
             v-model="title"
-            placeholder="title"
+            placeholder="Enter the title e.g name of the item"
           />
         </div>
         <div class="form-group">
@@ -30,7 +31,7 @@
             type="description"
             class="form-control"
             v-model="description"
-            placeholder="description"
+            placeholder="Enter item Description"
           />
         </div>
         <div class="form-group">
@@ -38,10 +39,11 @@
             type="location"
             class="form-control"
             v-model="building"
-            placeholder="location details"
+            placeholder="Enter item location"
           />
         </div>
-         <button class="btn btn-primary btn-block">Post</button>
+         <button class="btn btn-primary">Post</button>
+        </b-container>
     </div>
     </b-form>
      </div>
