@@ -24,7 +24,7 @@
       <b-container class="listitem"
          v-for="post in posts"
         v-bind:key="post._id">
-            <b-col>{{ post.category }}</b-col>
+            <p><b-col>{{ post.category }}</b-col></p>
             <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
             <b-col> Description: {{ post.description }}</b-col>
@@ -94,12 +94,20 @@ export default {
   text-decoration: none;
   display: inline-block;
 }
+p {
+  color: rgb(18, 68, 133);
+  background-color: rgb(125, 184, 190);
+  border: 2px solid #12579b;
+  border-radius: 90px;
+  font-family: courier;
+  font-size: 150%;
+}
 #commentitem{
   margin-bottom: 0.5em;
   margin-top: 0.5em;
-  background-color: rgb(116, 200, 219);
+  background-color: rgb(125, 184, 190);
   color: #000000;
-  border: 2px solid #c41693;
+  border: 2px solid #1681c4;
   border-radius: 10px;
   padding: 2px 2px;
   text-align: center;
@@ -127,7 +135,6 @@ export default {
     grid-template-columns: repeat(1, minmax(100px, 1fr));
   }
 }
-
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
   .container {
       width: 100%;
