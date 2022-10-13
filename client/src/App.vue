@@ -2,7 +2,7 @@
 <div id="app">
     <div id="nav">
       <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
-        <b-navbar-brand
+        <b-navbar-brand href="/posts"
     class="navbar-left">
     <img style="max-width:100px;
         margin-right: 10px; margin-top: auto;
