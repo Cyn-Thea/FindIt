@@ -2,6 +2,12 @@
 <div id="app">
     <div id="nav">
       <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
+        <b-navbar-brand href="/posts"
+    class="navbar-left">
+    <img style="max-width:100px;
+        margin-right: 10px; margin-top: auto;
+        max-height: 100px;
+       " src="./assets/cover.png"></b-navbar-brand>
       <b-navbar-nav class="ms-auto" style="float: right">
          <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>

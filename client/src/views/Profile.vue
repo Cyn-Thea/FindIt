@@ -9,6 +9,7 @@
           {{ message }}
       </b-alert>
     </b-container>
+    <b-container class="listitem">
           <router-view v-bind:user="user" />
           <div class="input">
             <label for="username">Username:</label>
@@ -31,6 +32,7 @@
             <input type="password" id="password" v-model="password" />
           </div>
            <button class="btn btn-primary ">Save Changes</button>
+           </b-container>
     </form>
     <h2>Your Posts</h2>
     <b-row align-h="center">
@@ -38,7 +40,7 @@
         v-for="user in users"
          v-bind:key="user._id">
          </b-container>
-        <b-card class="comment-listitem" align-h="center" >
+        <b-card id="mypostsitem" align-h="center" >
              <a :href="'/users/' + user.id">Manage your posts</a>
           </b-card>
       </b-row>
@@ -118,4 +120,16 @@ export default {
     width: 100px;
     float: center;
  }
+ #mypostsitem{
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  background-color: rgb(125, 184, 190);
+  color: #000000;
+  border: 2px solid #1681c4;
+  border-radius: 10px;
+  padding: 2px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
 </style>

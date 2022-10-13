@@ -24,12 +24,13 @@
       <b-container class="listitem"
          v-for="post in posts"
         v-bind:key="post._id">
-            <b-col>{{ post.category }}</b-col>
+            <p><b-col>{{ post.category }}</b-col></p>
             <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
             <b-col> Description: {{ post.description }}</b-col>
-            <b-col> Found at: {{ post.building }}</b-col>
-          <b-card class="comment-listitem" >
+            <b-col> Location details: {{ post.building }}</b-col>
+            <b-col> posted on: {{ post.date }}</b-col>
+          <b-card id="commentitem" >
              <a :href="'/posts/' + post._id">view all comments</a>
           </b-card>
       </b-container>
@@ -86,9 +87,29 @@ export default {
   margin-bottom: 0em;
   background-color: rgb(219, 237, 239);
   color: #000000;
-  border: 2px solid #087d94;
+  border: 2px solid #12579b;
   border-radius: 10px;
   padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+p {
+  color: rgb(18, 68, 133);
+  background-color: rgb(125, 184, 190);
+  border: 2px solid #12579b;
+  border-radius: 90px;
+  font-family: courier;
+  font-size: 150%;
+}
+#commentitem{
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  background-color: rgb(125, 184, 190);
+  color: #000000;
+  border: 2px solid #1681c4;
+  border-radius: 10px;
+  padding: 2px 2px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -114,7 +135,6 @@ export default {
     grid-template-columns: repeat(1, minmax(100px, 1fr));
   }
 }
-
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
   .container {
       width: 100%;

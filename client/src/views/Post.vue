@@ -6,8 +6,8 @@
         </div>
          <b-button :href="'/addcomment/' + post._id"
           size="sm"
-          variant="outline-info"
-          id="commentButton">Add Comment</b-button>
+          variant="outline-success"
+          >Add Comment</b-button>
       <p v-if="!comments.length && message === ''">There are no comments yet.</p>
      <div v-for="comment in comments" v-bind:key="comment._id" id="commentscontainer">
       <commentItem :comment="comment" v-on:delete-comment="deleteComment"></commentItem>
@@ -107,7 +107,7 @@ export default {
   font-family: Trebuchet MS;
 }
 #commentButton{
-  background-color: #ca1aca;
+  background-color: #1a37ca;
   margin-bottom: 0.5em;
   margin-top: -0.8em;
   border: none;
