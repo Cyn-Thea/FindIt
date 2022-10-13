@@ -132,7 +132,7 @@ router.delete('/api/posts/:postId/comments/:commentId', function (req, res, next
             try {
                 await Post.updateOne({_id: post._id}, { $pullAll: {comments: [comment._id] }} );
                 res.status(200).json(comment);
-                console.log('Specific comment deleted');
+                console.log('comment deleted');
             } catch (err) {
                 next(err);
             }
