@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
-/* // create new user(works)
+// create new user
 router.post('/api/users', function(req, res, next){
     var user = new User(req.body);
     user.save(function(err, user) {
         if (err) { return next(err); }
         res.status(201).json(user);
     })
-}); */
+}); 
 
 // get all users
 router.get('/api/users', function(req, res, next) {

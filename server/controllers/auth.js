@@ -2,15 +2,36 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs")
 const User = require("../models/user")
-var newSavedPost = require('../models/post');
 const jwt = require('jsonwebtoken');
 
-
-// Login
+//SignUp
+router.post("/api/users/signUp", async (req, res, next) => {
+    var newUser = new User({
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password
+    })
+    try {
+      var savedUser = await newUser.save();
+      res.status(200).json({
+        savedUser,
+        title: 'Signup Success' })
+    } 
+    catch (err) {
+      return res.status(400).json({
+        title: 'error',
+        error: 'email in use'
+      })
+    }
+    });
+  
+    //Login
 router.post('/api/users/login', (req, res, next) => {
-        var Email = req.body.email;
-        var Password = req.body.password;
-    User.findOne({ email:  Email }, (err, user) => {
+        var email = req.body.email;
+        var password = req.body.password;
+    User.findOne({ email:  email }, (err, user) => {
         if (err) return res.status(500).json({
           title: 'server error',
           error: err
@@ -18,14 +39,14 @@ router.post('/api/users/login', (req, res, next) => {
         if (!user) {
           return res.status(401).json({
             title: 'user not found',
-            error: 'incorrect email'
+            error: 'invalid credentials'
           })
         }
         //not working 
-        if (!bcrypt.compare(Password, user.password)) {
+        if (!bcrypt.compare(password, user.password)) {
           return res.status(401).json({
             tite: 'login failed',
-            error: 'incorrect password'
+            error: 'invalid credentials password'
           })
         }
         try {
@@ -38,7 +59,7 @@ router.post('/api/users/login', (req, res, next) => {
         catch (err) {
           return res.status(400).json({
             title: 'error',
-            error: 'Login failed'
+            error: 'Unable To Login'
           })
         }
         })
@@ -57,12 +78,11 @@ router.post('/api/users/login', (req, res, next) => {
         return res.status(200).json({
           title: 'user grabbed',
           user: {
+            username: user.username,
             firstName: user.firstName,
             lastName: user.lastName,
-            password: user.password,
             email: user.email,
-            username: user.username,
-            posts: user.posts,
+            password: user.password,
             id: user.id
           }
         })

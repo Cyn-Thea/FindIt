@@ -81,18 +81,19 @@ export default {
     handleSubmit() {
       const newUser = {
         username: this.username,
-        email: this.email,
-        password: this.password,
         firstName: this.firstName,
-        lastName: this.lastName
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password
       }
-      Api.post('/users', newUser).then(
+      Api.post('users/signUp', newUser).then(
         (res) => {
           console.log(res)
           this.$router.push('/')
         },
         (err) => {
-          this.error = err.response.error
+          console.log(err.response)
+          this.error = err.response.data.error
           this.message = 'Invalid credentials'
           this.showDismissibleAlert = true
         }
