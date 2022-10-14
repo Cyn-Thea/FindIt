@@ -81,7 +81,7 @@ Users who are administrators have access to all users and the option to delete a
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/Lost&Found ERD-2.png)
+![ER Diagram](./images/FindIt.png)
 
 ## Teaser (MS3)
 
