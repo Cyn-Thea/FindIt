@@ -69,28 +69,17 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Pages
 
-- <b>Home:</b>
-Welcome text with short descriptions of page/site purpose. (What we offer).
+- <b>Login:</b>
+This page is displayed to the user upon visit to the website. It allows the user to either log in to their existing account or create a new one.
 
-- <b>Sign in:</b> 
-(Optional) The sign in page will ask users to enter their UserName and UserPassword as well as the sign up option for new users.
-Choose and save favorite currency.
+- <b>Home:</b> 
+All Posts are displayed on this page as well as the option to create a new post. The posts can be filtered to show posts related to a particular category.
 
-- <b>History:</b>
-Signed-in user have access to existing account with saved transaction history and default (default/favorite) currency.
-View history of latest (up to 5) transactions.
+- <b>Profile:</b>
+In this section, a user is able to view and edit their personal information as well as see the posts they have made. They can manage their posts by either editing or deleting them.
 
-- <b>Exchange:</b> 
-Convert from chosen European currency(from provided list)  to US Dollars.
-(If logged in) The home page will display the user's default currency.
-Add bank fee, suggested average bank fee or add manually. 
-
-- <b>Tax:</b>
-Function to add tax, optional to choose from the provided list of states.
-
-- <b>Tip:</b>
-Function to add tip, optional to choose provided (three) leves or write percentage manually.
-
+- <b>Admin:</b> 
+Users who are administrators have access to all users and the option to delete all users.
 
 
 ### Entity-Relationship (ER) Diagram
