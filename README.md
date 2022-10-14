@@ -61,10 +61,7 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-- Tourist calculator to help European tourists visiting the USA.
-- Converter exchange from chosen european currency to USD and adding bank fee.
-- The user will also have an option of adding percentages manually for tipping and tax calculations.
-- The system will allow the user to choose a default/base currency, so they would not need to search for it every time they login to the website
+FindIt is a website that allows students to post what they lost or found on campus. This app is designed to help students find their lost belongings.
 
 
 ### Pages
