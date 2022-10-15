@@ -10,13 +10,13 @@
           variant="outline-info"
           class="btn-style mb-4 ml-3"
           title="Filter by lost"
-          v-on:click=";(selectedCategory = 'lost'), sortByCategory()"
+          v-on:click=";(selectedCategory = 'Lost'), sortByCategory()"
           >Lost</b-button >
          <b-button
           variant="outline-success"
           class="btn-style mb-4 ml-3"
           title="Filter by found"
-          v-on:click=";(selectedCategory = 'found'), sortByCategory()"
+          v-on:click=";(selectedCategory = 'Found'), sortByCategory()"
           >Found</b-button>
           <div class=" grid">
              <ul v-if="layout === 'grid'" class="card-list">

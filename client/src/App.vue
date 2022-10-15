@@ -55,8 +55,6 @@ export default {
     } else {
       this.isLoggedIn = true
       this.getUser()
-      this.getPost()
-      this.getComment()
     }
   },
   methods: {
@@ -87,7 +85,7 @@ export default {
         console.log(res.data.comments)
       })
     },
-    deleteAccount() {
+    deleteAccount(id) {
       Api.delete(`/users/${this.user.id}`)
         .then((res) => {
           localStorage.clear()

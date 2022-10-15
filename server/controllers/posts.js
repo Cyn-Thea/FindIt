@@ -153,30 +153,6 @@ router.delete('/api/posts/:id', function(req, res, next) {
    });
 });
 
- // delete a certain post under a user
- router.delete('/api/users/:userId/posts/:postId', function (req, res, next) {
-    var userId = req.params.id;
-    var postId = req.params.id;
-    User.findById(userId, function(err, user){
-        if (err) { return next(err) }
-        if (user === null) { 
-            return res.status(404).json({ message: "User not found" }); }
-       Post.findOneAndDelete({ _id: postId}, async function(err, post) {
-            if (err) { 
-                return next(err); } 
-            if (post == null) { 
-                return res.status(404).json({ message: "Post not found" }); }
-            try {
-                await User.updateOne({_id: user._id}, { $pullAll: {posts: [post._id] }} );
-                res.status(200).json(post);
-                console.log('Post deleted');
-            } catch (err) {
-                next(err);
-            }
-        });
-    })
-});
- 
 //Deletes all posts
 router.delete('/api/posts', function(req, res) {
    Post.deleteMany({}, function(err, posts) {
