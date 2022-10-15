@@ -8,6 +8,7 @@
          <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
         {{ message}}
          </b-alert>
+         <b-container class="listitem">
          <div class="form-group">
           <input
             type="text"
@@ -49,6 +50,7 @@
           />
         </div>
          <button class="btn btn-primary">Create Account</button>
+         </b-container>
           <b-form-group>
         <b-form-text class="text-left"
           >Already have an account?

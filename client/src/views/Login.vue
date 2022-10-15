@@ -7,6 +7,11 @@
       <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
         {{ message}}
     </b-alert>
+     <b-container class="listitem">
+      <div>
+    <img style="max-width:200px;
+        max-height: 100px;
+       " src="../assets/default.jpg"></div>
       <div class="form-group">
         <b-input
           type="email"
@@ -26,6 +31,7 @@
       <div id="buttons">
       <button class="btn btn-primary">Login</button>
       </div>
+       </b-container>
       <b-form-group>
         <b-form-text class="text-left"
           >Dont have an acccount?
