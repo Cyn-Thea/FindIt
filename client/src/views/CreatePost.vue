@@ -14,8 +14,8 @@
             v-model="category"
             placeholder="category">
              <option disabled value="">Select post type</option>
-              <option>LOST</option>
-              <option>FOUND</option>
+              <option>Lost</option>
+              <option>Found</option>
             </select>
         </div>
        <div class="form-group">
