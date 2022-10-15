@@ -91,7 +91,7 @@ export default {
       Api.post('users/signUp', newUser).then(
         (res) => {
           console.log(res)
-          this.$router.push('/posts')
+          this.$router.push('/')
         },
         (err) => {
           console.log(err.response)
