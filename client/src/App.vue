@@ -44,11 +44,11 @@ export default {
   data() {
     return {
       isLoggedIn: false,
-      user: {},
-      post: {}
+      user: {}
     }
   },
   mounted() {
+    console.log('hey' + this.user)
     if (localStorage.getItem('token') === null) {
       this.isLoggedIn = false
       this.$router.push('/')
@@ -65,24 +65,16 @@ export default {
       localStorage.clear()
       this.$router.push('/')
     },
+    handleLogin() {
+      this.isLoggedIn = true
+      this.getUser()
+    },
     getUser() {
       Api.get('/user', {
         headers: { token: localStorage.getItem('token') }
       }).then((res) => {
         this.user = res.data.user
         console.log(res.data.user)
-      })
-    },
-    getPost() {
-      Api.get('/posts').then((res) => {
-        this.post = res.data.posts
-        console.log(res.data.posts)
-      })
-    },
-    getComment() {
-      Api.get('/comments').then((res) => {
-        this.comment = res.data.comments
-        console.log(res.data.comments)
       })
     },
     deleteAccount(id) {
@@ -114,7 +106,7 @@ a:hover, a:active {
 }
 
 html body {
-  background-color: #c8dee6;
+  background-color: #d0d7da;
 }
 #bar {
   border-bottom : 1px solid #ec0ebc;
