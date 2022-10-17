@@ -3,7 +3,7 @@
       <div id="header">
            <h2 id = "username-lbl"> Manage your Posts</h2>
         </div>
-      <p v-if="!posts.length && message === ''">There are no posts yet.</p>
+      <p v-if="!posts.length && message === ''">You have not made any posts yet.</p>
      <div v-for="post in posts" v-bind:key="post._id" id="commentscontainer">
       <userItem :post="post" v-on:delete-post="deletePost"></userItem>
     </div>

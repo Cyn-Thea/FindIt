@@ -1,23 +1,5 @@
 <template>
-      <div class="container-md">
-       <b-button
-          variant="outline-warning"
-          class="btn-style mb-4 ml-3"
-          title="All posts"
-          v-on:click="retrieveAllPosts()"
-          >Explore</b-button >
-          <b-button
-          variant="outline-info"
-          class="btn-style mb-4 ml-3"
-          title="Filter by lost"
-          v-on:click=";(selectedCategory = 'Lost'), sortByCategory()"
-          >Lost</b-button >
-         <b-button
-          variant="outline-success"
-          class="btn-style mb-4 ml-3"
-          title="Filter by found"
-          v-on:click=";(selectedCategory = 'Found'), sortByCategory()"
-          >Found</b-button>
+      <div class="container">
           <div class=" grid">
              <ul v-if="layout === 'grid'" class="card-list">
            <p v-if="!posts.length && message === ''">There are no posts yet.</p>
@@ -25,13 +7,11 @@
          v-for="post in posts"
         v-bind:key="post._id">
             <p><b-col>{{ post.category }}</b-col></p>
-            <b-col>Post by: {{ post.author}}</b-col>
             <b-col>Title: {{ post.title }}</b-col>
             <b-col> Description: {{ post.description }}</b-col>
-            <b-col> Location details: {{ post.building }}</b-col>
             <b-col> posted on: {{ post.date }}</b-col>
           <b-card id="commentitem" >
-             <a :href="'/posts/' + post._id">view all comments</a>
+             <a :href="'/posts/' + post._id">view comments</a>
           </b-card>
       </b-container>
          </ul>
@@ -46,8 +26,9 @@ export default {
   name: 'posts',
   props: ['post'],
   mounted() {
-    console.log('PAGE is loaded')
+    console.log('Posts page is loaded')
     this.retrieveAllPosts()
+    this.checkBackendStatus()
   },
   data() {
     return {
@@ -68,14 +49,13 @@ export default {
           console.log(error)
         })
     },
-    sortByCategory() {
-      Api.get('/postFiltered?category=' + this.selectedCategory)
+    checkBackendStatus() {
+      Api.get('/')
         .then((response) => {
-          this.posts = response.data.posts
-          console.log(response)
+          console.log('Backend is avaliable')
         })
         .catch((error) => {
-          console.log(error)
+          alert(error)
         })
     }
   }
@@ -85,7 +65,7 @@ export default {
 <style scoped>
 .listitem {
   margin-bottom: 0em;
-  background-color: rgb(219, 237, 239);
+  background-color: rgb(233, 241, 242);
   color: #000000;
   border: 2px solid #12579b;
   border-radius: 10px;

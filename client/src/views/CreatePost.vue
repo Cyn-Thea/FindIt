@@ -34,14 +34,6 @@
             placeholder="Enter item Description"
           />
         </div>
-        <div class="form-group">
-          <input
-            type="location"
-            class="form-control"
-            v-model="building"
-            placeholder="Enter item location"
-          />
-        </div>
          <button class="btn btn-primary">Post</button>
         </b-container>
     </div>

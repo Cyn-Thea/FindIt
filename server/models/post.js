@@ -11,8 +11,6 @@ var postSchema = new Schema({
     author: {
              type: Schema.Types.ObjectId,
               ref: "users" },
-    building: {
-        type: String },
     comments: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'comments' }],

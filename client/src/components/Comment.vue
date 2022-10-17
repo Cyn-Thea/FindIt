@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row" >
        <b-container class="listitem">
-        <b-col>Comment by: {{ comment.author}}</b-col>
         <b-col> {{ comment.comment }}</b-col>
       </b-container>
     </div>
