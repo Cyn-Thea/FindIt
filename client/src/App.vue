@@ -14,10 +14,10 @@
           <b-nav-item class="nav-item" href="/posts">Home</b-nav-item>
           <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
           <b-nav-item-dropdown text="Settings" right>
-           <b-dropdown-item href="/profile">Profile</b-dropdown-item>
-           <b-dropdown-item  @click="logout">Logout</b-dropdown-item>
-           <b-dropdown-item @click="$bvModal.show('bv-modal')">Deactivate Account</b-dropdown-item>
-           <b-dropdown-item href="/users">Admin</b-dropdown-item>
+           <b-dropdown-item href="/profile"><b-icon icon="person-fill" variant="info"></b-icon>Profile</b-dropdown-item>
+           <b-dropdown-item href="/users"><b-icon icon="tools" variant="info"></b-icon>Admin</b-dropdown-item>
+           <b-dropdown-item  @click="logout"><b-icon icon="power" variant="info"></b-icon>Logout</b-dropdown-item>
+           <b-dropdown-item @click="$bvModal.show('bv-modal')"> <b-icon icon="exclamation-triangle" variant="danger"></b-icon>Deactivate Account</b-dropdown-item>
          </b-nav-item-dropdown>
        </b-collapse>
       </b-navbar-nav>
