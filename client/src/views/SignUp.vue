@@ -88,9 +88,10 @@ export default {
         email: this.email,
         password: this.password
       }
-      Api.post('users/signUp', newUser).then(
+      Api.post('/signUp', newUser).then(
         (res) => {
           console.log(res)
+          this.error = ''
           this.$router.push('/')
         },
         (err) => {

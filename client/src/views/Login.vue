@@ -62,7 +62,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      Api.post('/users/login', user).then(
+      Api.post('/login', user).then(
         (res) => {
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token)
