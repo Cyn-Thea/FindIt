@@ -75,6 +75,7 @@ export default {
   display: inline-block;
 }
 p {
+  margin-top: 4em;
   color: rgb(18, 68, 133);
   background-color: rgb(125, 184, 190);
   border: 2px solid #12579b;
