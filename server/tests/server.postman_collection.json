@@ -106,10 +106,9 @@
 							"});",
 							"",
 							"pm.test(\"correct JSON\", function(){",
-							"    pm.expect(\"lost\").to.eql(json.category);",
+							"    pm.expect(\"Lost\").to.eql(json.category);",
 							"    pm.expect(\"Found a water bottle\").to.eql(json.title);",
 							"    pm.expect(\"it is silver\").to.eql(json.description);",
-							"    pm.expect(\"i found it as svea in room 234\").to.eql(json.building);",
 							"})",
 							"",
 							"pm.globals.set(\"post_id\", json._id)"
@@ -123,7 +122,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"category\": \"lost\",\n    \"title\": \"Found a water bottle\",\n    \"description\": \"it is silver\",\n    \"building\": \"i found it as svea in room 234\"\n}",
+					"raw": "{\n    \"category\": \"Lost\",\n    \"title\": \"Found a water bottle\",\n    \"description\": \"it is silver\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -475,7 +474,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/api/postFiltered?category=lost",
+					"raw": "{{host}}/api/postFiltered?category=Lost",
 					"host": [
 						"{{host}}"
 					],
@@ -486,7 +485,7 @@
 					"query": [
 						{
 							"key": "category",
-							"value": "lost"
+							"value": "Lost"
 						}
 					]
 				}
@@ -1000,58 +999,6 @@
 					"path": [
 						"api",
 						"comments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create new user",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var json = pm.response.json();",
-							"",
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"correct JSON\", function(){",
-							"    pm.expect(\"cindie11\").to.eql(json.username);",
-							"    pm.expect(\"Cynthia\").to.eql(json.firstName);",
-							"    pm.expect(\"Tarwireyi\").to.eql(json.lastName);",
-							"    pm.expect(\"thea11cyn@gmail.com\").to.eql(json.email);",
-							"    pm.expect(\"12345b\").to.eql(json.password);",
-							"})",
-							"",
-							"pm.globals.set(\"user_id\", json._id)"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"cindie11\",\n    \"firstName\": \"Cynthia\",\n    \"lastName\": \"Tarwireyi\",\n    \"email\": \"thea11cyn@gmail.com\",\n    \"password\": \"12345b\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/api/users",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"users"
 					]
 				}
 			},
