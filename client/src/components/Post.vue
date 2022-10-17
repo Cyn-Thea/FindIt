@@ -6,7 +6,7 @@
         </div>
          <b-button :href="'/addcomment/' + post._id"
           size="sm"
-          variant="outline-success"
+          variant="outline-info"
           >Add Comment</b-button>
       <p v-if="!comments.length && message === ''">There are no comments yet.</p>
      <div v-for="comment in comments" v-bind:key="comment._id" id="commentscontainer">

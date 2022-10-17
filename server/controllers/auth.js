@@ -5,7 +5,7 @@ const User = require("../models/user")
 const jwt = require('jsonwebtoken');
 
 //SignUp
-router.post("/api/users/signUp", async (req, res, next) => {
+router.post("/api/signUp", async (req, res, next) => {
     var newUser = new User({
       username: req.body.username,
       firstName: req.body.firstName,
@@ -13,22 +13,20 @@ router.post("/api/users/signUp", async (req, res, next) => {
       email: req.body.email,
       password: req.body.password
     })
-    try {
-      var savedUser = await newUser.save();
-      res.status(200).json({
-        savedUser,
-        title: 'Signup Success' })
-    } 
-    catch (err) {
-      return res.status(400).json({
-        title: 'error',
-        error: 'email in use'
+    newUser.save(err => {
+      if (err) {
+        return res.status(400).json({
+          title: 'error',
+          error: 'email in use'
+        })
+      }
+      return res.status(200).json({
+        title: 'signup success'
       })
-    }
-    });
-  
+    })
+  });
     //Login
-router.post('/api/users/login', (req, res, next) => {
+router.post('/api/login', (req, res, next) => {
         var email = req.body.email;
         var password = req.body.password;
     User.findOne({ email:  email }, (err, user) => {
@@ -92,3 +90,5 @@ router.post('/api/users/login', (req, res, next) => {
   });
 
   module.exports = router;
+
+  // sourced from: https://youtu.be/W5Ky44mWQZE

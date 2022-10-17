@@ -5,9 +5,9 @@
         <p><b-col>{{ post.category}}</b-col></p>
         <b-col>Title: {{ post.title}}</b-col>
          <b-col>Description: {{ post.description}}</b-col>
-        <b-col> Location : {{ post.building }}</b-col>
         <b-col> Posted On : {{ post.date}}</b-col>
-        <b-button variant="danger" v-on:click="$emit('delete-post', post._id)">Delete</b-button>
+        <b-button variant="outline-danger" v-on:click="$emit('delete-post', post._id)">
+          <b-icon icon="trash"></b-icon>Delete</b-button>
       </b-container>
     </div>
   </div>
