@@ -8,10 +8,6 @@
         {{ message}}
     </b-alert>
      <b-container class="listitem">
-      <div>
-    <img style="max-width:200px;
-        max-height: 100px;
-       " src="../assets/default.jpg"></div>
       <div class="form-group">
         <b-input
           type="email"
