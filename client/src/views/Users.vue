@@ -83,9 +83,9 @@ export default {
   margin-top: 1.5em;
   background-color: rgb(219, 232, 235);
   color: #000000;
-  border: 2px solid #ef1414;
-  border-radius: 10px;
-  padding: 2px 6px;
+  border: 2px solid #215b99;
+  border-radius: 20px;
+  padding: 9px 9px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

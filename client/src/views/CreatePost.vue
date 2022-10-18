@@ -27,12 +27,12 @@
           />
         </div>
         <div class="form-group">
-          <input
+          <textarea
             type="description"
             class="form-control"
             v-model="description"
             placeholder="Enter item Description"
-          />
+          ></textarea>
         </div>
          <button class="btn btn-primary">Post</button>
         </b-container>

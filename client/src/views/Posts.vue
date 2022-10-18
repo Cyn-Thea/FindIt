@@ -1,6 +1,6 @@
 <template>
-      <div class="container">
-          <div class=" grid">
+      <!-- <div class="container-md"> -->
+          <div class="grid">
              <ul v-if="layout === 'grid'" class="card-list">
            <p v-if="!posts.length && message === ''">There are no posts yet.</p>
       <b-container class="listitem"
@@ -15,7 +15,6 @@
           </b-card>
       </b-container>
          </ul>
-    </div>
     </div>
 </template>
 
@@ -64,7 +63,8 @@ export default {
 
 <style scoped>
 .listitem {
-  margin-bottom: 0em;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
   background-color: rgb(233, 241, 242);
   color: #000000;
   border: 2px solid #12579b;
@@ -75,7 +75,7 @@ export default {
   display: inline-block;
 }
 p {
-  margin-top: 4em;
+  margin-top: 0em;
   color: rgb(18, 68, 133);
   background-color: rgb(125, 184, 190);
   border: 2px solid #12579b;
@@ -85,7 +85,6 @@ p {
 }
 #commentitem{
   margin-bottom: 0.5em;
-  margin-top: 0.5em;
   background-color: rgb(125, 184, 190);
   color: #000000;
   border: 2px solid #1681c4;
@@ -95,9 +94,6 @@ p {
   text-decoration: none;
   display: inline-block;
 }
-.container-md {
-  margin-top: 1em;
-}
 .btn-style {
   font-family: "Century Gothic",Verdana,sans-serif;
   width: 85px;
@@ -105,7 +101,7 @@ p {
 }
 .card-list {
   display: grid;
-  grid-gap: 2em;
+  grid-gap: 1.5em;
   grid-template-columns: repeat(3, minmax(100px, 1fr));
 }
 @media only screen and (max-width: 768px) {

@@ -106,7 +106,7 @@ a:hover, a:active {
 }
 
 html body {
-  background-color: #d0d7da;
+  background-color: #dfebf0;
 }
 #bar {
   border-bottom : 1px solid #ec0ebc;
