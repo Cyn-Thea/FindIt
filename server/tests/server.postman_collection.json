@@ -619,7 +619,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"category\": \"lost\",\n    \"title\": \"Found a water bottle\",\n    \"description\": \"it is silver and has a black handle\",\n    \"building\": \"i found it as svea in room 234\",\n    \"date\": \"2022-10-11T13:28:00.759Z\"\n}",
+					"raw": "{\n    \"category\": \"lost\",\n    \"title\": \"Found a water bottle\",\n    \"description\": \"it is silver and has a black handle\",\n    \"date\": \"2022-10-11T13:28:00.759Z\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -701,7 +701,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"building\": \"i found it as svea, the second floow, in room 234B\"\n}",
+					"raw": "{\n    \"description\": \"i found it as svea, the second floow, in room 234B\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
