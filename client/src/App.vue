@@ -1,43 +1,47 @@
 <template>
-<div id="app">
-    <div id="nav">
-      <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
-        <b-navbar-brand href="/posts"
-    class="navbar-left">
-    <img style="max-width:100px;
-        margin-right: 10px; margin-top: auto;
-        max-height: 50px;
-       " src="./assets/cover.png"></b-navbar-brand>
-      <b-navbar-nav class="ms-auto" style="float: right">
-         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-          <b-collapse id="nav-collapse" is-nav>
-          <b-nav-item class="nav-item" href="/posts">Home</b-nav-item>
-          <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
-          <b-nav-item-dropdown text="Settings" right>
-           <b-dropdown-item href="/profile"><b-icon icon="person-fill" variant="info"></b-icon>Profile</b-dropdown-item>
-           <b-dropdown-item href="/users"><b-icon icon="tools" variant="info"></b-icon>Admin</b-dropdown-item>
-           <b-dropdown-item  @click="logout"><b-icon icon="power" variant="info"></b-icon>Logout</b-dropdown-item>
-           <b-dropdown-item @click="$bvModal.show('bv-modal')"> <b-icon icon="exclamation-triangle" variant="danger"></b-icon>Deactivate Account</b-dropdown-item>
-         </b-nav-item-dropdown>
-       </b-collapse>
-      </b-navbar-nav>
-          <b-modal id="bv-modal" hide-footer>
-       <template #modal-title>Delete Account</template>
-       <div class="d-block text-center">
-         <h3>Are you sure you want to permanetly delete your account?</h3>
-        </div>
-       <b-button type="button" class="btn btn-danger" @click="deleteAccount">Yes</b-button>
-       <b-button type="button" class="btn btn-info mb-9 ml-3" @click="$bvModal.hide('bv-modal')">Cancel</b-button>
-       </b-modal>
-    </b-navbar>
-    <router-view v-bind:user="user"/>
+  <div id="app">
+    <div v-if="isLoggedIn">
+      <!-- <div id="nav"> -->
+        <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
+          <b-navbar-brand href="/posts"
+      class="navbar-left">
+      <img style="max-width:100px;
+          margin-right: 10px; margin-top: auto;
+          max-height: 50px;
+         " src="./assets/cover.png"></b-navbar-brand>
+        <b-navbar-nav class="ms-auto" style="float: right">
+           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-collapse id="nav-collapse" is-nav>
+            <b-nav-item class="nav-item" href="/posts">Home</b-nav-item>
+            <b-nav-item class="nav-item" href="/createPost">Create Post</b-nav-item>
+            <b-nav-item-dropdown text="Settings" right>
+             <b-dropdown-item href="/profile"><b-icon icon="person-fill" variant="info"></b-icon>Profile</b-dropdown-item>
+             <b-dropdown-item href="/users"><b-icon icon="tools" variant="info"></b-icon>Admin</b-dropdown-item>
+             <b-dropdown-item  @click="logout"><b-icon icon="power" variant="info"></b-icon>Logout</b-dropdown-item>
+             <b-dropdown-item @click="$bvModal.show('bv-modal')"> <b-icon icon="exclamation-triangle" variant="danger"></b-icon>Deactivate Account</b-dropdown-item>
+           </b-nav-item-dropdown>
+         </b-collapse>
+        </b-navbar-nav>
+            <b-modal id="bv-modal" hide-footer>
+         <template #modal-title>Delete Account</template>
+         <div class="d-block text-center">
+           <h3>Are you sure you want to permanetly delete your account?</h3>
+          </div>
+         <b-button type="button" class="btn btn-danger" @click="deleteAccount">Yes</b-button>
+         <b-button type="button" class="btn btn-info mb-9 ml-3" @click="$bvModal.hide('bv-modal')">Cancel</b-button>
+         </b-modal>
+      </b-navbar>
+      <router-view v-bind:user="user"/>
+      <!-- </div> -->
+      <!-- Render the content of the current page view -->
     </div>
-    <!-- Render the content of the current page view -->
+    <div v-else>
+        <log-in @handleLogin="handleLogin()" />
+      </div>
   </div>
-</template>
+  </template>
 
 <script>
-
 import { Api } from '@/Api'
 
 export default {
@@ -48,10 +52,9 @@ export default {
     }
   },
   mounted() {
-    console.log('hey' + this.user)
     if (localStorage.getItem('token') === null) {
       this.isLoggedIn = false
-      this.$router.push('/')
+      // this.$router.push('/')
     } else {
       this.isLoggedIn = true
       this.getUser()
