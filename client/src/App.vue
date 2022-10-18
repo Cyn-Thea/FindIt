@@ -7,7 +7,7 @@
     <img style="max-width:100px;
         margin-right: 10px; margin-top: auto;
         max-height: 50px;
-       " src="./assets/appName.png"></b-navbar-brand>
+       " src="./assets/cover.png"></b-navbar-brand>
       <b-navbar-nav class="ms-auto" style="float: right">
          <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>

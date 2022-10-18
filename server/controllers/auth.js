@@ -6,14 +6,14 @@ const jwt = require('jsonwebtoken');
 
 //SignUp
 router.post("/api/signUp", async (req, res, next) => {
-    var newUser = new User({
+    var user = new User({
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     })
-    newUser.save(err => {
+    user.save(err => {
       if (err) {
         return res.status(400).json({
           title: 'error',
