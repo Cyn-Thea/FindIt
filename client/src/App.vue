@@ -35,9 +35,6 @@
       <!-- </div> -->
       <!-- Render the content of the current page view -->
     </div>
-    <div v-else>
-        <log-in @handleLogin="handleLogin()" />
-      </div>
   </div>
   </template>
 
