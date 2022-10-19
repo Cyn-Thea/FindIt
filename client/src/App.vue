@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="isLoggedIn">
-      <!-- <div id="nav"> -->
+      <div id="nav">
         <b-navbar toggleable="md" type="dark" class="navbar navbar-light" style="background-color: #06647e;">
           <b-navbar-brand href="/posts"
       class="navbar-left">
@@ -32,7 +31,6 @@
          </b-modal>
       </b-navbar>
       <router-view v-bind:user="user"/>
-      <!-- </div> -->
       <!-- Render the content of the current page view -->
     </div>
   </div>
